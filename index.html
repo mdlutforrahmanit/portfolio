@@ -128,19 +128,6 @@
             }
         }
         
-        /* Timeline line animation */
-        .timeline-line {
-            position: absolute;
-            top: 0;
-            left: 50%;
-            transform: translateX(-50%);
-            width: 2px;
-            height: 0;
-            background: linear-gradient(to bottom, var(--electric-blue), transparent);
-            z-index: 0;
-            transition: height 1s ease;
-        }
-        
         /* Pulse animation for live dot */
         @keyframes pulse {
             0%, 100% {
@@ -159,6 +146,35 @@
         .magnetic-button {
             transition: transform 0.3s ease;
         }
+        
+        /* Mobile Menu */
+        .mobile-menu {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease-out;
+        }
+        
+        .mobile-menu.open {
+            max-height: 300px;
+        }
+        
+        /* Video container responsive */
+        .video-container {
+            position: relative;
+            padding-bottom: 56.25%; /* 16:9 aspect ratio */
+            height: 0;
+            overflow: hidden;
+            border-radius: 1rem;
+        }
+        
+        .video-container iframe {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            border: none;
+        }
     </style>
 </head>
 <body class="bg-black text-white">
@@ -175,16 +191,36 @@
                 <span class="text-xl font-bold">Pulse</span>
             </div>
             
+            <!-- Desktop Menu -->
             <div class="hidden md:flex space-x-8">
                 <a href="#services" class="text-slate-300 hover:text-white transition-colors">Services</a>
-                <a href="#process" class="text-slate-300 hover:text-white transition-colors">Process</a>
+                <a href="#production" class="text-slate-300 hover:text-white transition-colors">Production</a>
                 <a href="#pricing" class="text-slate-300 hover:text-white transition-colors">Pricing</a>
                 <a href="#leadership" class="text-slate-300 hover:text-white transition-colors">Leadership</a>
+                <a href="#our-production" class="text-slate-300 hover:text-white transition-colors">Our Production</a>
             </div>
             
-            <button id="cta-nav" class="magnetic-button px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-lg font-medium text-sm transition-all duration-300 electric-glow-light">
-                Schedule a Call
-            </button>
+            <div class="flex items-center space-x-4">
+                <!-- Mobile Menu Button -->
+                <button id="mobile-menu-btn" class="md:hidden text-slate-300 hover:text-white">
+                    <i data-lucide="menu" class="w-6 h-6"></i>
+                </button>
+                
+                <button id="cta-nav" class="magnetic-button px-6 py-2.5 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-lg font-medium text-sm transition-all duration-300 electric-glow-light">
+                    Schedule a Call
+                </button>
+            </div>
+        </div>
+        
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden bg-black/95 backdrop-blur-xl border-b border-gray-800 mt-4">
+            <div class="py-4 px-6 space-y-4">
+                <a href="#services" class="block text-slate-300 hover:text-white transition-colors py-2">Services</a>
+                <a href="#production" class="block text-slate-300 hover:text-white transition-colors py-2">Production</a>
+                <a href="#pricing" class="block text-slate-300 hover:text-white transition-colors py-2">Pricing</a>
+                <a href="#leadership" class="block text-slate-300 hover:text-white transition-colors py-2">Leadership</a>
+                <a href="#our-production" class="block text-slate-300 hover:text-white transition-colors py-2">Our Production</a>
+            </div>
         </div>
     </nav>
     
@@ -344,7 +380,7 @@
                     </div>
                 </div>
                 
-                <!-- Center Column - Graph -->
+                <!-- Center Column - Graph with Image -->
                 <div class="lg:col-span-2 glass-card rounded-2xl p-8 border border-gray-800 relative overflow-hidden" id="graph-container">
                     <div class="flex justify-between items-center mb-8">
                         <div>
@@ -357,59 +393,104 @@
                         </div>
                     </div>
                     
-                    <div class="relative h-80">
-                        <!-- Graph SVG -->
-                        <svg width="100%" height="100%" viewBox="0 0 800 300" class="overflow-visible">
-                            <!-- Grid lines -->
-                            <line x1="50" y1="50" x2="50" y2="250" stroke="#222" stroke-width="1"/>
-                            <line x1="50" y1="250" x2="750" y2="250" stroke="#222" stroke-width="1"/>
-                            
-                            <!-- Y-axis labels -->
-                            <text x="30" y="60" fill="#94A3B8" font-size="12">200K</text>
-                            <text x="30" y="150" fill="#94A3B8" font-size="12">100K</text>
-                            <text x="30" y="240" fill="#94A3B8" font-size="12">0</text>
-                            
-                            <!-- X-axis labels -->
-                            <text x="150" y="270" fill="#94A3B8" font-size="12">Month 1</text>
-                            <text x="300" y="270" fill="#94A3B8" font-size="12">Month 3</text>
-                            <text x="450" y="270" fill="#94A3B8" font-size="12">Month 6</text>
-                            <text x="600" y="270" fill="#94A3B8" font-size="12">Month 9</text>
-                            <text x="720" y="270" fill="#94A3B8" font-size="12">Month 12</text>
-                            
-                            <!-- Data points -->
-                            <circle cx="150" cy="200" r="4" fill="#007BFF"/>
-                            <circle cx="300" cy="150" r="4" fill="#007BFF"/>
-                            <circle cx="450" cy="100" r="4" fill="#007BFF"/>
-                            <circle cx="600" cy="70" r="4" fill="#007BFF"/>
-                            <circle cx="750" cy="50" r="4" fill="#007BFF"/>
-                            
-                            <!-- Growth line with animation -->
-                            <path d="M150,200 L300,150 L450,100 L600,70 L750,50" 
-                                  fill="none" 
-                                  stroke="#007BFF" 
-                                  stroke-width="3" 
-                                  class="graph-line"
-                                  filter="url(#glow)"/>
-                            
-                            <!-- Glow effect for the line -->
-                            <defs>
-                                <filter id="glow">
-                                    <feGaussianBlur stdDeviation="3" result="coloredBlur"/>
-                                    <feMerge>
-                                        <feMergeNode in="coloredBlur"/>
-                                        <feMergeNode in="SourceGraphic"/>
-                                    </feMerge>
-                                </filter>
-                            </defs>
-                        </svg>
+                    <div class="relative h-80 w-full">
+                        <!-- Image instead of SVG graph -->
+                        <img src="https://www.tubebuddy.com/wp-content/uploads/2024/07/youtube-growth-tools-banner.jpg" 
+                             alt="YouTube Growth Trajectory"
+                             class="w-full h-full object-cover rounded-lg">
                     </div>
                 </div>
             </div>
         </div>
     </section>
     
+    <!-- Production Section (Added) -->
+    <section id="production" class="py-24 bg-obsidian">
+        <div class="max-w-7xl mx-auto px-6 md:px-12">
+            <div class="text-center mb-16">
+                <span class="monospace text-sm text-blue-400 bg-blue-900/20 px-3 py-1.5 rounded-full border border-blue-800/30 mb-4 inline-block">Premium Production</span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">End-to-End Content Production</h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">Professional video production services that elevate your content quality and engagement.</p>
+            </div>
+            
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <!-- Production Service 1 -->
+                <div class="service-card glass-card rounded-2xl p-8 border border-gray-800 transition-all duration-500 hover:scale-[1.02]">
+                    <div class="w-14 h-14 rounded-xl bg-blue-900/30 flex items-center justify-center mb-6">
+                        <i data-lucide="film" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Video Production</h3>
+                    <p class="text-slate-300 mb-6">High-quality video production with professional equipment and experienced cinematographers.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>4K/HD video production</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>Professional lighting setup</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>Audio enhancement</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 border border-gray-700 hover:border-blue-500 rounded-lg font-medium transition-colors">Learn More</button>
+                </div>
+                
+                <!-- Production Service 2 -->
+                <div class="service-card glass-card rounded-2xl p-8 border border-gray-800 transition-all duration-500 hover:scale-[1.02]">
+                    <div class="w-14 h-14 rounded-xl bg-blue-900/30 flex items-center justify-center mb-6">
+                        <i data-lucide="scissors" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Video Editing</h3>
+                    <p class="text-slate-300 mb-6">Professional editing services that transform raw footage into engaging, retention-optimized content.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>Professional editing suite</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>Motion graphics & animations</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>Color grading & correction</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 border border-gray-700 hover:border-blue-500 rounded-lg font-medium transition-colors">Learn More</button>
+                </div>
+                
+                <!-- Production Service 3 -->
+                <div class="service-card glass-card rounded-2xl p-8 border border-gray-800 transition-all duration-500 hover:scale-[1.02]">
+                    <div class="w-14 h-14 rounded-xl bg-blue-900/30 flex items-center justify-center mb-6">
+                        <i data-lucide="image" class="w-8 h-8 text-blue-400"></i>
+                    </div>
+                    <h3 class="text-2xl font-bold mb-4">Thumbnail Design</h3>
+                    <p class="text-slate-300 mb-6">Click-worthy thumbnail designs that boost CTR and drive more views to your content.</p>
+                    <ul class="space-y-3 mb-8">
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>A/B tested designs</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>Psychological optimization</span>
+                        </li>
+                        <li class="flex items-center">
+                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
+                            <span>Brand consistency</span>
+                        </li>
+                    </ul>
+                    <button class="w-full py-3 border border-gray-700 hover:border-blue-500 rounded-lg font-medium transition-colors">Learn More</button>
+                </div>
+            </div>
+        </div>
+    </section>
+    
     <!-- Service Cards -->
-    <section id="services" class="py-24 bg-obsidian">
+    <section id="services" class="py-24 bg-black">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             <div class="text-center mb-16">
                 <span class="monospace text-sm text-blue-400 bg-blue-900/20 px-3 py-1.5 rounded-full border border-blue-800/30 mb-4 inline-block">Our Services</span>
@@ -417,32 +498,8 @@
                 <p class="text-xl text-slate-300 max-w-3xl mx-auto">Comprehensive solutions tailored to transform your YouTube presence.</p>
             </div>
             
-            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-                <!-- Service Card 1 -->
-                <div class="service-card glass-card rounded-2xl p-8 border border-gray-800 transition-all duration-500 hover:scale-[1.02]">
-                    <div class="w-14 h-14 rounded-xl bg-blue-900/30 flex items-center justify-center mb-6">
-                        <i data-lucide="bar-chart-3" class="w-8 h-8 text-blue-400"></i>
-                    </div>
-                    <h3 class="text-2xl font-bold mb-4">Channel Strategy & Audit</h3>
-                    <p class="text-slate-300 mb-6">Deep-dive analysis of your channel's performance, competitor benchmarking, and custom growth roadmap.</p>
-                    <ul class="space-y-3 mb-8">
-                        <li class="flex items-center">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
-                            <span>Comprehensive channel audit</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
-                            <span>Competitor analysis</span>
-                        </li>
-                        <li class="flex items-center">
-                            <i data-lucide="check-circle" class="w-5 h-5 text-blue-400 mr-3"></i>
-                            <span>Custom content strategy</span>
-                        </li>
-                    </ul>
-                    <button class="w-full py-3 border border-gray-700 hover:border-blue-500 rounded-lg font-medium transition-colors">Learn More</button>
-                </div>
-                
-                <!-- Service Card 2 -->
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8">
+                <!-- Service Card 1 - Production (Modified) -->
                 <div class="service-card glass-card rounded-2xl p-8 border border-gray-800 transition-all duration-500 hover:scale-[1.02]">
                     <div class="w-14 h-14 rounded-xl bg-blue-900/30 flex items-center justify-center mb-6">
                         <i data-lucide="video" class="w-8 h-8 text-blue-400"></i>
@@ -466,7 +523,7 @@
                     <button class="w-full py-3 border border-gray-700 hover:border-blue-500 rounded-lg font-medium transition-colors">Learn More</button>
                 </div>
                 
-                <!-- Service Card 3 -->
+                <!-- Service Card 2 - Algorithm Optimization -->
                 <div class="service-card glass-card rounded-2xl p-8 border border-gray-800 transition-all duration-500 hover:scale-[1.02]">
                     <div class="w-14 h-14 rounded-xl bg-blue-900/30 flex items-center justify-center mb-6">
                         <i data-lucide="zap" class="w-8 h-8 text-blue-400"></i>
@@ -494,7 +551,7 @@
     </section>
     
     <!-- Live Metrics Dashboard -->
-    <section class="py-24 bg-black">
+    <section class="py-24 bg-obsidian">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             <div class="glass-card rounded-2xl p-8 border border-gray-800">
                 <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-12">
@@ -569,147 +626,111 @@
         </div>
     </section>
     
-    <!-- Internal Roadmap (The Process) -->
-    <section id="process" class="py-24 bg-obsidian relative">
+    <!-- Our Production Video Section -->
+    <section id="our-production" class="py-24 bg-black">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             <div class="text-center mb-16">
-                <span class="monospace text-sm text-blue-400 bg-blue-900/20 px-3 py-1.5 rounded-full border border-blue-800/30 mb-4 inline-block">Our Process</span>
-                <h2 class="text-4xl md:text-5xl font-bold mb-6">The Pulse Growth Framework</h2>
-                <p class="text-xl text-slate-300 max-w-3xl mx-auto">A proven, 4-stage methodology for sustainable YouTube channel growth.</p>
+                <span class="monospace text-sm text-blue-400 bg-blue-900/20 px-3 py-1.5 rounded-full border border-blue-800/30 mb-4 inline-block">Video Showcase</span>
+                <h2 class="text-4xl md:text-5xl font-bold mb-6">Our Production</h2>
+                <p class="text-xl text-slate-300 max-w-3xl mx-auto">See the quality and creativity of our video production work in action.</p>
             </div>
             
-            <div class="relative">
-                <!-- Timeline line -->
-                <div id="timeline-line" class="timeline-line"></div>
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <!-- Video Player -->
+                <div class="glass-card rounded-2xl p-6 border border-gray-800">
+                    <div class="video-container">
+                        <!-- Replace with your YouTube video embed code -->
+                        <iframe src="https://www.youtube.com/embed/dQw4w9WgXcQ" 
+                                title="Our Production Showcase" 
+                                frameborder="0" 
+                                allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" 
+                                allowfullscreen>
+                        </iframe>
+                    </div>
+                    <div class="mt-6 flex flex-col sm:flex-row justify-between items-center">
+                        <div>
+                            <h3 class="text-xl font-bold">Production Showcase</h3>
+                            <p class="text-slate-400 text-sm">See our latest work in action</p>
+                        </div>
+                        <a href="https://youtube.com" target="_blank" class="mt-4 sm:mt-0 px-6 py-2 bg-red-600 hover:bg-red-700 rounded-lg font-medium transition-colors flex items-center">
+                            <i data-lucide="youtube" class="w-5 h-5 mr-2"></i>
+                            Watch on YouTube
+                        </a>
+                    </div>
+                </div>
                 
-                <!-- Timeline items -->
-                <div class="space-y-24">
-                    <!-- Stage 1 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center relative z-10">
-                        <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
-                            <div class="inline-flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-900/30 border-2 border-blue-800/50 flex items-center justify-center mr-4">
-                                    <span class="text-blue-400 font-bold text-xl">1</span>
-                                </div>
-                                <h3 class="text-2xl font-bold">Deep-Dive Research</h3>
+                <!-- Production Features -->
+                <div class="space-y-8">
+                    <div class="glass-card rounded-2xl p-8 border border-gray-800">
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-blue-900/30 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i data-lucide="film" class="w-6 h-6 text-blue-400"></i>
                             </div>
-                            <p class="text-slate-300">We analyze your channel, competitors, and target audience to identify untapped opportunities and create a tailored growth strategy.</p>
-                            <ul class="mt-4 space-y-2">
-                                <li class="flex items-center md:justify-end">
-                                    <span class="text-slate-400">Channel audit & SWOT analysis</span>
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 ml-2"></i>
-                                </li>
-                                <li class="flex items-center md:justify-end">
-                                    <span class="text-slate-400">Competitor benchmarking</span>
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 ml-2"></i>
-                                </li>
-                                <li class="flex items-center md:justify-end">
-                                    <span class="text-slate-400">Target audience profiling</span>
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 ml-2"></i>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="md:w-1/2 md:pl-12 flex justify-center md:justify-start">
-                            <div class="w-20 h-20 rounded-2xl bg-blue-900/20 border border-blue-800/30 flex items-center justify-center timeline-icon">
-                                <i data-lucide="search" class="w-10 h-10 text-slate-400"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">Professional Quality</h3>
+                                <p class="text-slate-300">Our production team uses state-of-the-art equipment and techniques to deliver broadcast-quality videos that captivate audiences.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Stage 2 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center relative z-10">
-                        <div class="md:w-1/2 md:pr-12 order-2 md:order-1 flex justify-center md:justify-end">
-                            <div class="w-20 h-20 rounded-2xl bg-blue-900/20 border border-blue-800/30 flex items-center justify-center timeline-icon">
-                                <i data-lucide="video" class="w-10 h-10 text-slate-400"></i>
+                    <div class="glass-card rounded-2xl p-8 border border-gray-800">
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-blue-900/30 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i data-lucide="zap" class="w-6 h-6 text-blue-400"></i>
                             </div>
-                        </div>
-                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 mb-8 md:mb-0">
-                            <div class="inline-flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-900/30 border-2 border-blue-800/50 flex items-center justify-center mr-4">
-                                    <span class="text-blue-400 font-bold text-xl">2</span>
-                                </div>
-                                <h3 class="text-2xl font-bold">Strategic Production</h3>
-                            </div>
-                            <p class="text-slate-300">Our team of specialists produces high-conversion content, from scripting and filming to professional editing and thumbnail design.</p>
-                            <ul class="mt-4 space-y-2">
-                                <li class="flex items-center">
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 mr-2"></i>
-                                    <span class="text-slate-400">Content strategy & scripting</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 mr-2"></i>
-                                    <span class="text-slate-400">Professional video production</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 mr-2"></i>
-                                    <span class="text-slate-400">Thumbnail & metadata creation</span>
-                                </li>
-                            </ul>
-                        </div>
-                    </div>
-                    
-                    <!-- Stage 3 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center relative z-10">
-                        <div class="md:w-1/2 md:pr-12 md:text-right mb-8 md:mb-0">
-                            <div class="inline-flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-900/30 border-2 border-blue-800/50 flex items-center justify-center mr-4">
-                                    <span class="text-blue-400 font-bold text-xl">3</span>
-                                </div>
-                                <h3 class="text-2xl font-bold">Algorithm Optimization</h3>
-                            </div>
-                            <p class="text-slate-300">We leverage data analytics and YouTube's algorithm patterns to maximize visibility, engagement, and subscriber growth.</p>
-                            <ul class="mt-4 space-y-2">
-                                <li class="flex items-center md:justify-end">
-                                    <span class="text-slate-400">SEO & metadata optimization</span>
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 ml-2"></i>
-                                </li>
-                                <li class="flex items-center md:justify-end">
-                                    <span class="text-slate-400">A/B testing & performance tracking</span>
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 ml-2"></i>
-                                </li>
-                                <li class="flex items-center md:justify-end">
-                                    <span class="text-slate-400">Engagement rate optimization</span>
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 ml-2"></i>
-                                </li>
-                            </ul>
-                        </div>
-                        <div class="md:w-1/2 md:pl-12 flex justify-center md:justify-start">
-                            <div class="w-20 h-20 rounded-2xl bg-blue-900/20 border border-blue-800/30 flex items-center justify-center timeline-icon">
-                                <i data-lucide="zap" class="w-10 h-10 text-slate-400"></i>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">Engagement Optimized</h3>
+                                <p class="text-slate-300">Every video is crafted with retention in mind, using proven techniques to keep viewers watching and coming back for more.</p>
                             </div>
                         </div>
                     </div>
                     
-                    <!-- Stage 4 -->
-                    <div class="timeline-item flex flex-col md:flex-row items-center relative z-10">
-                        <div class="md:w-1/2 md:pr-12 order-2 md:order-1 flex justify-center md:justify-end">
-                            <div class="w-20 h-20 rounded-2xl bg-blue-900/20 border border-blue-800/30 flex items-center justify-center timeline-icon">
-                                <i data-lucide="trending-up" class="w-10 h-10 text-slate-400"></i>
+                    <div class="glass-card rounded-2xl p-8 border border-gray-800">
+                        <div class="flex items-start mb-6">
+                            <div class="w-12 h-12 rounded-xl bg-blue-900/30 flex items-center justify-center mr-4 flex-shrink-0">
+                                <i data-lucide="trending-up" class="w-6 h-6 text-blue-400"></i>
+                            </div>
+                            <div>
+                                <h3 class="text-2xl font-bold mb-3">Results-Driven</h3>
+                                <p class="text-slate-300">Our production approach is data-informed, ensuring every video contributes to your channel's growth and monetization goals.</p>
                             </div>
                         </div>
-                        <div class="md:w-1/2 md:pl-12 order-1 md:order-2 mb-8 md:mb-0">
-                            <div class="inline-flex items-center mb-4">
-                                <div class="w-12 h-12 rounded-full bg-blue-900/30 border-2 border-blue-800/50 flex items-center justify-center mr-4">
-                                    <span class="text-blue-400 font-bold text-xl">4</span>
-                                </div>
-                                <h3 class="text-2xl font-bold">Scale & Monetize</h3>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Additional Video Thumbnails -->
+            <div class="mt-16">
+                <h3 class="text-2xl font-bold mb-8 text-center">More Production Examples</h3>
+                <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+                    <div class="glass-card rounded-xl p-4 border border-gray-800 hover:border-gray-700 transition-all duration-300 cursor-pointer group">
+                        <div class="aspect-video rounded-lg overflow-hidden mb-4">
+                            <div class="w-full h-full bg-gradient-to-br from-blue-900/30 to-purple-900/30 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="w-12 h-12 text-white/50 group-hover:text-blue-400 transition-colors"></i>
                             </div>
-                            <p class="text-slate-300">We help you scale your channel's success and implement monetization strategies to maximize revenue from your content.</p>
-                            <ul class="mt-4 space-y-2">
-                                <li class="flex items-center">
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 mr-2"></i>
-                                    <span class="text-slate-400">Audience monetization strategy</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 mr-2"></i>
-                                    <span class="text-slate-400">Sponsorship & partnership outreach</span>
-                                </li>
-                                <li class="flex items-center">
-                                    <i data-lucide="check" class="w-5 h-5 text-blue-400 mr-2"></i>
-                                    <span class="text-slate-400">Long-term growth planning</span>
-                                </li>
-                            </ul>
                         </div>
+                        <h4 class="font-bold mb-2">Client Case Study: Tech Channel</h4>
+                        <p class="text-slate-400 text-sm">+245% subscriber growth in 3 months</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-4 border border-gray-800 hover:border-gray-700 transition-all duration-300 cursor-pointer group">
+                        <div class="aspect-video rounded-lg overflow-hidden mb-4">
+                            <div class="w-full h-full bg-gradient-to-br from-green-900/30 to-blue-900/30 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="w-12 h-12 text-white/50 group-hover:text-blue-400 transition-colors"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-bold mb-2">Brand Transformation</h4>
+                        <p class="text-slate-400 text-sm">Complete visual rebranding success story</p>
+                    </div>
+                    
+                    <div class="glass-card rounded-xl p-4 border border-gray-800 hover:border-gray-700 transition-all duration-300 cursor-pointer group">
+                        <div class="aspect-video rounded-lg overflow-hidden mb-4">
+                            <div class="w-full h-full bg-gradient-to-br from-red-900/30 to-orange-900/30 flex items-center justify-center">
+                                <i data-lucide="play-circle" class="w-12 h-12 text-white/50 group-hover:text-blue-400 transition-colors"></i>
+                            </div>
+                        </div>
+                        <h4 class="font-bold mb-2">Editing Masterclass</h4>
+                        <p class="text-slate-400 text-sm">Behind the scenes of our editing process</p>
                     </div>
                 </div>
             </div>
@@ -717,7 +738,7 @@
     </section>
     
     <!-- Tiered Pricing/Offer -->
-    <section id="pricing" class="py-24 bg-black">
+    <section id="pricing" class="py-24 bg-obsidian">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             <div class="text-center mb-16">
                 <span class="monospace text-sm text-blue-400 bg-blue-900/20 px-3 py-1.5 rounded-full border border-blue-800/30 mb-4 inline-block">Pricing Plans</span>
@@ -732,8 +753,8 @@
                         <h3 class="text-2xl font-bold mb-2">Starter</h3>
                         <p class="text-slate-300">Perfect for new creators building their foundation</p>
                         <div class="mt-6 flex items-baseline">
-                            <span class="text-5xl font-bold">$2,499</span>
-                            <span class="text-slate-400 ml-2">/month</span>
+                            <span class="text-5xl font-bold">Book/Call</span>
+                            <span class="text-slate-400 ml-2">for price</span>
                         </div>
                     </div>
                     
@@ -764,7 +785,7 @@
                         </li>
                     </ul>
                     
-                    <button class="w-full py-4 border border-gray-700 hover:border-blue-500 rounded-xl font-semibold transition-colors">Get Started</button>
+                    <button class="w-full py-4 border border-gray-700 hover:border-blue-500 rounded-xl font-semibold transition-colors">Book a Call</button>
                 </div>
                 
                 <!-- Scale Plan (Highlighted) -->
@@ -777,8 +798,8 @@
                         <h3 class="text-2xl font-bold mb-2">Scale</h3>
                         <p class="text-slate-300">For growing channels ready to accelerate</p>
                         <div class="mt-6 flex items-baseline">
-                            <span class="text-5xl font-bold">$4,999</span>
-                            <span class="text-slate-400 ml-2">/month</span>
+                            <span class="text-5xl font-bold">Book/Call</span>
+                            <span class="text-slate-400 ml-2">for price</span>
                         </div>
                     </div>
                     
@@ -809,7 +830,7 @@
                         </li>
                     </ul>
                     
-                    <button class="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl font-semibold transition-all duration-300 electric-glow">Start Scaling</button>
+                    <button class="w-full py-4 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl font-semibold transition-all duration-300 electric-glow">Book a Call</button>
                 </div>
                 
                 <!-- Enterprise Plan -->
@@ -818,7 +839,8 @@
                         <h3 class="text-2xl font-bold mb-2">Enterprise</h3>
                         <p class="text-slate-300">For established creators & brands</p>
                         <div class="mt-6 flex items-baseline">
-                            <span class="text-5xl font-bold">Custom</span>
+                            <span class="text-5xl font-bold">Book/Call</span>
+                            <span class="text-slate-400 ml-2">for price</span>
                         </div>
                     </div>
                     
@@ -849,14 +871,14 @@
                         </li>
                     </ul>
                     
-                    <button class="w-full py-4 border border-gray-700 hover:border-blue-500 rounded-xl font-semibold transition-colors">Contact Sales</button>
+                    <button class="w-full py-4 border border-gray-700 hover:border-blue-500 rounded-xl font-semibold transition-colors">Book a Call</button>
                 </div>
             </div>
         </div>
     </section>
     
     <!-- Leadership Section -->
-    <section id="leadership" class="py-24 bg-obsidian">
+    <section id="leadership" class="py-24 bg-black">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             <div class="text-center mb-16">
                 <span class="monospace text-sm text-blue-400 bg-blue-900/20 px-3 py-1.5 rounded-full border border-blue-800/30 mb-4 inline-block">Our Leadership</span>
@@ -949,27 +971,22 @@
     </section>
     
     <!-- Modern Footer -->
-    <footer class="bg-black border-t border-gray-900 pt-16 pb-8">
+    <footer class="bg-obsidian border-t border-gray-900 pt-16 pb-8">
         <div class="max-w-7xl mx-auto px-6 md:px-12">
             <div class="grid grid-cols-1 lg:grid-cols-3 gap-12 mb-16">
-                <!-- Newsletter -->
+                <!-- WhatsApp CTA -->
                 <div class="lg:col-span-2">
                     <div class="glass-card rounded-2xl p-8 border border-gray-800">
                         <div class="flex flex-col md:flex-row justify-between items-start md:items-center mb-6">
                             <div class="mb-6 md:mb-0 md:mr-8">
-                                <h3 class="text-2xl font-bold mb-2">Get Growth Insights</h3>
-                                <p class="text-slate-300">Subscribe to our newsletter for YouTube algorithm updates and growth strategies.</p>
+                                <h3 class="text-2xl font-bold mb-2">Get in Touch</h3>
+                                <p class="text-slate-300">Chat with us on WhatsApp for quick responses and personalized consultation.</p>
                             </div>
                             <div class="w-full md:w-auto">
-                                <div class="flex flex-col sm:flex-row gap-4">
-                                    <input type="email" 
-                                           placeholder="Your email address" 
-                                           class="flex-grow px-6 py-3 bg-gray-900 border border-gray-800 rounded-xl focus:outline-none focus:border-blue-500 focus:ring-2 focus:ring-blue-500/20 transition-all">
-                                    <button class="px-8 py-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-500 hover:to-blue-600 rounded-xl font-semibold transition-all duration-300 electric-glow-light">
-                                        Subscribe
-                                    </button>
-                                </div>
-                                <p class="text-slate-500 text-sm mt-4">No spam. Unsubscribe anytime.</p>
+                                <a href="https://wa.me/1234567890" target="_blank" class="inline-flex items-center px-8 py-3 bg-gradient-to-r from-green-600 to-green-700 hover:from-green-500 hover:to-green-600 rounded-xl font-semibold transition-all duration-300 electric-glow-light">
+                                    <i data-lucide="message-circle" class="w-5 h-5 mr-2"></i>
+                                    Chat on WhatsApp
+                                </a>
                             </div>
                         </div>
                     </div>
@@ -980,10 +997,10 @@
                     <h3 class="text-xl font-bold mb-6">Quick Links</h3>
                     <ul class="space-y-4">
                         <li><a href="#services" class="text-slate-400 hover:text-white transition-colors">Services</a></li>
-                        <li><a href="#process" class="text-slate-400 hover:text-white transition-colors">Process</a></li>
+                        <li><a href="#production" class="text-slate-400 hover:text-white transition-colors">Production</a></li>
                         <li><a href="#pricing" class="text-slate-400 hover:text-white transition-colors">Pricing</a></li>
                         <li><a href="#leadership" class="text-slate-400 hover:text-white transition-colors">Leadership</a></li>
-                        <li><a href="#" class="text-slate-400 hover:text-white transition-colors">Case Studies</a></li>
+                        <li><a href="#our-production" class="text-slate-400 hover:text-white transition-colors">Our Production</a></li>
                     </ul>
                 </div>
             </div>
@@ -1039,6 +1056,35 @@
         }
         
         requestAnimationFrame(raf);
+        
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+        let menuOpen = false;
+        
+        mobileMenuBtn.addEventListener('click', () => {
+            menuOpen = !menuOpen;
+            if (menuOpen) {
+                mobileMenu.classList.add('open');
+                mobileMenuBtn.innerHTML = '<i data-lucide="x" class="w-6 h-6"></i>';
+                lucide.createIcons();
+            } else {
+                mobileMenu.classList.remove('open');
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                lucide.createIcons();
+            }
+        });
+        
+        // Close mobile menu when clicking a link
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+                menuOpen = false;
+                mobileMenuBtn.innerHTML = '<i data-lucide="menu" class="w-6 h-6"></i>';
+                lucide.createIcons();
+            });
+        });
         
         // Text reveal animation for hero section
         document.addEventListener('DOMContentLoaded', function() {
@@ -1130,42 +1176,19 @@
                 metricsObserver.observe(metricsSection);
             }
             
-            // Timeline animation
-            const timelineItems = document.querySelectorAll('.timeline-item');
-            const timelineLine = document.getElementById('timeline-line');
-            const timelineIcons = document.querySelectorAll('.timeline-icon i');
-            
-            const timelineObserver = new IntersectionObserver((entries) => {
-                entries.forEach((entry, index) => {
-                    if (entry.isIntersecting) {
-                        // Animate the timeline line
-                        const lineHeight = (timelineItems.length * 120) - 40;
-                        timelineLine.style.height = `${lineHeight}px`;
-                        
-                        // Animate icons with delay
-                        setTimeout(() => {
-                            timelineIcons.forEach(icon => {
-                                icon.style.color = '#007BFF';
-                                icon.style.transition = 'color 0.5s ease';
-                            });
-                        }, 1000);
-                    }
-                });
-            }, { threshold: 0.5 });
-            
-            timelineItems.forEach(item => {
-                timelineObserver.observe(item);
-            });
-            
-            // Graph line animation
+            // Graph image animation
             const graphContainer = document.getElementById('graph-container');
             const graphObserver = new IntersectionObserver((entries) => {
                 entries.forEach(entry => {
                     if (entry.isIntersecting) {
-                        // Trigger graph animation
-                        const graphLine = document.querySelector('.graph-line');
-                        if (graphLine) {
-                            graphLine.style.animation = 'draw 3s ease-in-out forwards';
+                        // Add a subtle animation to the image
+                        const graphImage = graphContainer.querySelector('img');
+                        if (graphImage) {
+                            graphImage.style.transform = 'scale(1.05)';
+                            graphImage.style.transition = 'transform 2s ease';
+                            setTimeout(() => {
+                                graphImage.style.transform = 'scale(1)';
+                            }, 2000);
                         }
                     }
                 });
@@ -1177,11 +1200,11 @@
             
             // Spotlight effect for bento grid
             const spotlight = document.getElementById('spotlight');
-            const graphSection = document.getElementById('graph-container');
+            const successSection = document.getElementById('success');
             
-            if (graphSection && spotlight) {
-                graphSection.addEventListener('mousemove', (e) => {
-                    const rect = graphSection.getBoundingClientRect();
+            if (successSection && spotlight) {
+                successSection.addEventListener('mousemove', (e) => {
+                    const rect = successSection.getBoundingClientRect();
                     const x = e.clientX - rect.left;
                     const y = e.clientY - rect.top;
                     
@@ -1190,7 +1213,7 @@
                     spotlight.style.opacity = '1';
                 });
                 
-                graphSection.addEventListener('mouseleave', () => {
+                successSection.addEventListener('mouseleave', () => {
                     spotlight.style.opacity = '0';
                 });
             }
@@ -1270,6 +1293,23 @@
                 button.addEventListener('click', () => {
                     // Simulate a form submission or modal opening
                     alert('Thank you for your interest! Our team will contact you shortly.');
+                });
+            });
+            
+            // Pricing buttons - change to "Book a Call"
+            const pricingPlanButtons = document.querySelectorAll('.pricing-card button');
+            pricingPlanButtons.forEach(button => {
+                button.addEventListener('click', () => {
+                    alert('Redirecting to booking page...');
+                    // In a real implementation, this would redirect to a booking page
+                });
+            });
+            
+            // Video thumbnail interactions
+            const videoThumbnails = document.querySelectorAll('.glass-card.cursor-pointer');
+            videoThumbnails.forEach(thumbnail => {
+                thumbnail.addEventListener('click', () => {
+                    alert('Video player would open here');
                 });
             });
             
