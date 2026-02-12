@@ -1,0 +1,925 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=5.0, user-scalable=yes">
+  <title>Strüdel • Luxury construction</title>
+  <!-- Google Fonts: Cormorant Garamond (luxury serif) + Inter (sans) -->
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Inter:wght@300;400;500;600&display=swap" rel="stylesheet">
+  <!-- Font Awesome 6 -->
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+  <style>
+    /* ---------- RESET & GLOBAL — PIXEL PERFECT ---------- */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+    }
+    html {
+      scroll-behavior: smooth;
+      overflow-x: hidden;
+      font-size: 16px;
+    }
+    body {
+      background-color: #fdfaf7; /* soft warm white/beige */
+      color: #1e1e1e; /* near-black */
+      font-family: 'Inter', sans-serif;
+      font-weight: 300;
+      line-height: 1.6;
+      font-size: 1rem;
+      overflow-x: hidden;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+    h1, h2, h3, h4, .logo, .nav-links a, .btn, .quote-icon, .section-title, 
+    .stat-number, .step-circle, .accordion-title, .testimonial-card h4 {
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 600;
+      letter-spacing: 0.02em;
+    }
+    h2 {
+      font-size: 3.2rem;
+      font-weight: 500;
+      margin-bottom: 1.5rem;
+      color: #1a1a1a;
+      line-height: 1.1;
+    }
+    @media (max-width: 768px) {
+      h2 { font-size: 2.5rem; }
+    }
+    .container {
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
+    /* ---------- BUTTONS & ACCENTS ---------- */
+    .btn {
+      display: inline-block;
+      padding: 0.9rem 2.2rem;
+      background: transparent;
+      border: 1px solid #a18a6b; /* muted gold */
+      color: #1e1e1e;
+      font-size: 0.8rem;
+      font-weight: 600;
+      text-transform: uppercase;
+      letter-spacing: 2.5px;
+      transition: all 0.35s ease;
+      cursor: pointer;
+      position: relative;
+      overflow: hidden;
+      z-index: 1;
+      font-family: 'Inter', sans-serif;
+      line-height: 1;
+    }
+    .btn:hover {
+      background-color: #a18a6b;
+      color: #fdfaf7;
+      border-color: #a18a6b;
+    }
+    .btn-glow:hover {
+      box-shadow: 0 0 18px rgba(161, 138, 107, 0.2);
+    }
+    .gold-accent {
+      color: #a18a6b;
+    }
+    .divider {
+      width: 100%;
+      height: 1px;
+      background: #e2dcd5;
+      margin: 3rem 0;
+    }
+    /* ---------- STICKY NAVIGATION — PERFECT TRANSITION ---------- */
+    header {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: rgba(253, 250, 247, 0.94);
+      backdrop-filter: blur(12px);
+      -webkit-backdrop-filter: blur(12px);
+      padding: 1.25rem 0;
+      transition: padding 0.3s ease, background 0.3s ease, box-shadow 0.3s;
+      border-bottom: 1px solid rgba(226, 220, 213, 0.5);
+    }
+    header.scrolled {
+      padding: 0.65rem 0;
+      background: rgba(253, 250, 247, 0.98);
+      box-shadow: 0 2px 20px rgba(0,0,0,0.02);
+    }
+    .nav-container {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      width: 90%;
+      max-width: 1400px;
+      margin: 0 auto;
+    }
+    .logo {
+      font-size: 2.2rem;
+      font-weight: 700;
+      letter-spacing: 4px;
+      color: #2b2b2b;
+      line-height: 1;
+    }
+    .logo span {
+      color: #a18a6b;
+      font-weight: 400;
+    }
+    .nav-links {
+      display: flex;
+      gap: 2.8rem;
+      align-items: center;
+    }
+    .nav-links a {
+      font-family: 'Inter', sans-serif;
+      font-weight: 400;
+      font-size: 0.8rem;
+      text-transform: uppercase;
+      letter-spacing: 1.8px;
+      color: #2b2b2b;
+      position: relative;
+      padding: 0.3rem 0;
+    }
+    .nav-links a:not(.btn-request)::after {
+      content: '';
+      position: absolute;
+      bottom: 0;
+      left: 0;
+      width: 0;
+      height: 1px;
+      background: #a18a6b;
+      transition: width 0.25s ease;
+    }
+    .nav-links a:not(.btn-request):hover::after {
+      width: 100%;
+    }
+    .btn-request {
+      background: #1e1e1e;
+      color: #fdfaf7 !important;
+      border: none;
+      padding: 0.65rem 1.8rem !important;
+      font-weight: 500;
+      border-radius: 0;
+      transition: background 0.25s;
+    }
+    .btn-request:hover {
+      background: #a18a6b;
+    }
+    /* ----- HAMBURGER — pixel perfect ----- */
+    .hamburger {
+      display: none;
+      font-size: 2rem;
+      cursor: pointer;
+      color: #1e1e1e;
+    }
+    @media (max-width: 1024px) {
+      .nav-links { gap: 1.8rem; }
+    }
+    @media (max-width: 900px) {
+      .nav-links { display: none; }
+      .hamburger { display: block; }
+      .mobile-menu-active .nav-links {
+        display: flex;
+        flex-direction: column;
+        position: absolute;
+        top: 100%;
+        left: 0;
+        width: 100%;
+        background: #fdfaf7;
+        padding: 2rem 0;
+        border-top: 1px solid #e2dcd5;
+        border-bottom: 1px solid #e2dcd5;
+        backdrop-filter: blur(12px);
+        gap: 1.8rem;
+      }
+    }
+    /* ---------- HERO — SPLIT 90vh ---------- */
+    .hero {
+      min-height: 90vh;
+      display: flex;
+      align-items: center;
+      padding: 2rem 0;
+    }
+    .hero-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .hero-left h1 {
+      font-size: 5rem;
+      font-weight: 600;
+      line-height: 1.05;
+      margin-bottom: 1.2rem;
+      color: #1a1a1a;
+      letter-spacing: -0.01em;
+    }
+    .hero-italic {
+      font-family: 'Inter', sans-serif;
+      font-style: italic;
+      font-weight: 300;
+      color: #6b685c;
+      font-size: 1.25rem;
+      margin-bottom: 2.8rem;
+      letter-spacing: 0.5px;
+    }
+    .hero-right {
+      overflow: hidden;
+      animation: zoomFade 1.8s cubic-bezier(0.23, 1, 0.32, 1);
+    }
+    .hero-right img {
+      width: 100%;
+      height: 80vh;
+      max-height: 750px;
+      object-fit: cover;
+      filter: grayscale(25%);
+      display: block;
+    }
+    @keyframes zoomFade {
+      0% { opacity: 0.7; transform: scale(1.05); }
+      100% { opacity: 1; transform: scale(1); }
+    }
+    @media (max-width: 1000px) {
+      .hero-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .hero-right img { height: 60vh; }
+      .hero-left h1 { font-size: 4rem; }
+    }
+    @media (max-width: 600px) {
+      .hero-left h1 { font-size: 3rem; }
+    }
+    /* ---------- TRUST QUOTE — BORDERS, SPACING ---------- */
+    .trust-section {
+      padding: 5rem 0;
+      text-align: center;
+      max-width: 1000px;
+      margin: 0 auto;
+      border-top: 1px solid #e2dcd5;
+      border-bottom: 1px solid #e2dcd5;
+    }
+    .quote-mark {
+      font-size: 6rem;
+      font-family: 'Cormorant Garamond', serif;
+      color: #a18a6b;
+      line-height: 0.7;
+    }
+    .trust-text {
+      font-size: 2.4rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 400;
+      margin: 1rem 0 2.2rem;
+      color: #2b2b2b;
+      line-height: 1.2;
+    }
+    @media (max-width: 600px) {
+      .trust-text { font-size: 1.8rem; }
+    }
+    /* ---------- PROJECTS — 4-COL GRID, PERFECT MARGINS ---------- */
+    .projects {
+      padding: 6rem 0 5rem;
+    }
+    .projects-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .project-card {
+      background: #fff;
+      box-shadow: 0 8px 30px rgba(0,0,0,0.01);
+      transition: transform 0.4s ease, box-shadow 0.4s;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+    }
+    .project-card:hover {
+      transform: translateY(-10px);
+      box-shadow: 0 28px 45px rgba(72, 58, 42, 0.05);
+    }
+    .card-img {
+      overflow: hidden;
+      height: 260px;
+    }
+    .card-img img {
+      width: 100%;
+      height: 100%;
+      object-fit: cover;
+      transition: transform 0.7s ease;
+      filter: grayscale(60%);
+      display: block;
+    }
+    .project-card:hover .card-img img {
+      transform: scale(1.07);
+      filter: grayscale(0%);
+    }
+    .card-content {
+      padding: 1.8rem 1.5rem 2rem;
+      background: white;
+    }
+    .card-content h3 {
+      font-size: 1.8rem;
+      font-weight: 500;
+      margin-bottom: 0.25rem;
+      line-height: 1.1;
+    }
+    .specs {
+      display: flex;
+      gap: 1.2rem;
+      font-size: 0.7rem;
+      color: #6d6d6d;
+      margin-top: 1rem;
+      text-transform: uppercase;
+      letter-spacing: 0.8px;
+    }
+    @media (max-width: 1100px) {
+      .projects-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 700px) {
+      .projects-grid { grid-template-columns: 1fr; }
+    }
+    /* ---------- WHY CHOOSE US — ACCORDION + IMAGE ---------- */
+    .why-grid {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 4rem;
+      align-items: center;
+    }
+    .accordion-item {
+      border-bottom: 1px solid #ddd6ce;
+      padding: 1.3rem 0;
+    }
+    .accordion-title {
+      display: flex;
+      justify-content: space-between;
+      font-size: 1.7rem;
+      font-family: 'Cormorant Garamond', serif;
+      font-weight: 500;
+      cursor: pointer;
+      color: #1e1e1e;
+    }
+    .accordion-content {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height 0.4s ease;
+      color: #5a5a5a;
+      font-weight: 300;
+      padding-left: 0.2rem;
+    }
+    .accordion-item.active .accordion-content {
+      max-height: 150px;
+      margin-top: 1.2rem;
+    }
+    .why-right img {
+      width: 100%;
+      height: 600px;
+      object-fit: cover;
+      display: block;
+    }
+    @media (max-width: 1000px) {
+      .why-grid { grid-template-columns: 1fr; gap: 2rem; }
+      .why-right img { height: 500px; }
+    }
+    /* ---------- MARQUEE — INFINITE, PAUSE HOVER ---------- */
+    .marquee-section {
+      padding: 4rem 0;
+      overflow: hidden;
+      white-space: nowrap;
+      background: #f6f3ef;
+    }
+    .marquee {
+      display: inline-block;
+      animation: scroll 38s linear infinite;
+    }
+    .marquee:hover {
+      animation-play-state: paused;
+    }
+    .marquee img {
+      width: 280px;
+      height: 200px;
+      object-fit: cover;
+      margin-right: 2rem;
+      filter: grayscale(80%);
+      transition: filter 0.3s;
+      display: inline-block;
+      border: 1px solid #eae3db;
+    }
+    .marquee img:hover {
+      filter: grayscale(0%);
+    }
+    @keyframes scroll {
+      0% { transform: translateX(0); }
+      100% { transform: translateX(-50%); }
+    }
+    /* ---------- SERVICES CARDS ---------- */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(5, 1fr);
+      gap: 1.8rem;
+      margin: 3rem 0 4rem;
+    }
+    .service-card {
+      background: white;
+      padding: 2.2rem 1rem;
+      text-align: center;
+      border: 1px solid #f1ede9;
+      transition: transform 0.3s;
+    }
+    .service-card:hover {
+      transform: translateY(-5px);
+    }
+    .service-card i {
+      font-size: 2.2rem;
+      color: #a18a6b;
+      margin-bottom: 1rem;
+    }
+    .service-card h3 {
+      font-size: 1.4rem;
+      margin-bottom: 0.4rem;
+    }
+    @media (max-width: 1100px) {
+      .services-grid { grid-template-columns: repeat(3,1fr); }
+    }
+    @media (max-width: 700px) {
+      .services-grid { grid-template-columns: repeat(2,1fr); }
+    }
+    @media (max-width: 450px) {
+      .services-grid { grid-template-columns: 1fr; }
+    }
+    /* ---------- PROCESS 5-STEP (connecting line) ---------- */
+    .process {
+      display: flex;
+      justify-content: space-between;
+      margin: 4rem 0 5rem;
+      position: relative;
+    }
+    .step {
+      text-align: center;
+      flex: 1;
+      position: relative;
+    }
+    .step:not(:last-child)::after {
+      content: '';
+      position: absolute;
+      top: 30px;
+      right: -20%;
+      width: 80%;
+      height: 1px;
+      background: #d8cfc5;
+      z-index: 0;
+    }
+    .step-circle {
+      background: #fdfaf7;
+      border: 1px solid #a18a6b;
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      display: flex;
+      margin: 0 auto 1.2rem;
+      align-items: center;
+      justify-content: center;
+      font-size: 1.6rem;
+      font-weight: 600;
+      background: white;
+    }
+    @media (max-width: 900px) {
+      .process { flex-direction: column; gap: 2rem; }
+      .step:not(:last-child)::after { display: none; }
+    }
+    /* ---------- STATISTICS COUNTERS ---------- */
+    .stats-grid {
+      display: flex;
+      justify-content: space-around;
+      padding: 5rem 0;
+    }
+    .stat-item {
+      text-align: center;
+    }
+    .stat-number {
+      font-size: 3.8rem;
+      font-weight: 600;
+      color: #1e1e1e;
+      line-height: 1;
+    }
+    @media (max-width: 800px) {
+      .stats-grid { flex-direction: column; gap: 2.5rem; }
+    }
+    /* ---------- TESTIMONIALS AUTO-SLIDE (pause on hover) ---------- */
+    .testimonials-slider {
+      display: flex;
+      gap: 2rem;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 1.5rem 0.3rem;
+      margin-bottom: 2rem;
+    }
+    .testimonials-slider::-webkit-scrollbar {
+      display: none;
+    }
+    .testimonial-card {
+      flex: 0 0 350px;
+      background: white;
+      padding: 2.2rem;
+      border: 1px solid #ece7e2;
+      scroll-snap-align: start;
+    }
+    .stars {
+      color: #a18a6b;
+      margin: 1rem 0 0.5rem;
+      font-size: 1.1rem;
+    }
+    @media (max-width: 500px) {
+      .testimonial-card { flex: 0 0 280px; }
+    }
+    /* ---------- CTA SECTION ---------- */
+    .cta-section {
+      padding: 7rem 0;
+      background: linear-gradient(145deg, #f8f4f0 0%, #ede8e2 100%);
+      text-align: center;
+    }
+    /* ---------- CERTIFICATION LOGOS ---------- */
+    .cert-logos {
+      display: flex;
+      justify-content: center;
+      gap: 4rem;
+      flex-wrap: wrap;
+      padding: 4.5rem 0;
+    }
+    .cert-logos img {
+      width: 100px;
+      filter: grayscale(100%);
+      opacity: 0.6;
+      transition: all 0.3s;
+    }
+    .cert-logos img:hover {
+      filter: grayscale(0);
+      opacity: 1;
+    }
+    /* ---------- LUXURY FOOTER ---------- */
+    footer {
+      background: #1c1c1c;
+      color: #ccc;
+      padding: 4rem 0 1.8rem;
+    }
+    .footer-grid {
+      display: grid;
+      grid-template-columns: repeat(4, 1fr);
+      gap: 2rem;
+    }
+    .footer-grid h4 {
+      color: #f0e7de;
+      font-size: 1.3rem;
+    }
+    .social-icons i {
+      margin-right: 1.2rem;
+      font-size: 1.5rem;
+      color: #b59d7a;
+      transition: color 0.2s;
+    }
+    .social-icons i:hover {
+      color: #dac09a;
+    }
+    @media (max-width: 900px) {
+      .footer-grid { grid-template-columns: repeat(2, 1fr); }
+    }
+    @media (max-width: 500px) {
+      .footer-grid { grid-template-columns: 1fr; }
+    }
+    /* ---------- PROGRESS BAR & BACK TO TOP ---------- */
+    .progress-bar {
+      position: fixed;
+      top: 0;
+      left: 0;
+      height: 3px;
+      background: #a18a6b;
+      width: 0%;
+      z-index: 999;
+      transition: width 0.1s;
+    }
+    .back-to-top {
+      position: fixed;
+      bottom: 30px;
+      right: 30px;
+      background: #1e1e1e;
+      color: white;
+      width: 50px;
+      height: 50px;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      opacity: 0;
+      transition: opacity 0.2s, transform 0.2s;
+      pointer-events: none;
+      border: 1px solid #a18a6b;
+    }
+    .back-to-top.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+    .back-to-top:hover {
+      transform: scale(1.08);
+    }
+    /* ---------- FADE-UP ANIMATIONS (STAGGER) ---------- */
+    .fade-up {
+      opacity: 0;
+      transform: translateY(28px);
+      transition: opacity 0.9s cubic-bezier(0.2, 0.9, 0.3, 1), transform 0.9s cubic-bezier(0.2, 0.9, 0.3, 1);
+    }
+    .fade-up.appear {
+      opacity: 1;
+      transform: translateY(0);
+    }
+    /* ---------- RESPONSIVE FINE-TUNING ---------- */
+    @media (max-width: 1200px) {
+      .container { width: 92%; }
+    }
+    @media (max-width: 768px) {
+      .container { width: 90%; }
+    }
+    img {
+      max-width: 100%;
+      height: auto;
+    }
+  </style>
+</head>
+<body>
+  <div class="progress-bar" id="progressBar"></div>
+  
+  <!-- PREMIUM HEADER (CORMORANT LOGO) -->
+  <header id="header">
+    <div class="nav-container">
+      <div class="logo">STRÜ<span>DEL</span></div>
+      <div class="hamburger" id="hamburger"><i class="fas fa-bars"></i></div>
+      <nav class="nav-links" id="navLinks">
+        <a href="#about">About</a>
+        <a href="#residential">Residential</a>
+        <a href="#commercial">Commercial</a>
+        <a href="#careers">Careers</a>
+        <a href="#contact">Contact</a>
+        <a href="#quote" class="btn btn-request">Request a Quote</a>
+      </nav>
+    </div>
+  </header>
+
+  <main>
+    <!-- HERO SPLIT (FIRST DESIGN FONT) -->
+    <section class="hero container">
+      <div class="hero-grid">
+        <div class="hero-left fade-up">
+          <h1>Custom Home and <br>Renovation Specialists.</h1>
+          <div class="hero-italic">— Love where you live</div>
+          <a href="#consult" class="btn btn-glow" style="margin-top:0.8rem;">DISCOVER MORE</a>
+        </div>
+        <div class="hero-right">
+          <img src="https://images.pexels.com/photos/106399/pexels-photo-106399.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="luxury house facade" loading="eager">
+        </div>
+      </div>
+    </section>
+
+    <!-- TRUST QUOTE -->
+    <div class="container">
+      <div class="trust-section fade-up">
+        <span class="quote-mark">“</span>
+        <div class="trust-text">We don't just build structures—we craft legacies.</div>
+        <a href="#connect" class="btn">Let's Connect</a>
+      </div>
+    </div>
+
+    <!-- RECENT PROJECTS (CORMORANT HEADLINE) -->
+    <section class="container projects">
+      <h2 style="text-align:center; font-family:'Cormorant Garamond', serif;">Recent Projects</h2>
+      <div class="projects-grid">
+        <div class="project-card fade-up">
+          <div class="card-img"><img src="https://images.pexels.com/photos/2587054/pexels-photo-2587054.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Modern Villa"></div>
+          <div class="card-content"><h3>Palo Alto</h3><p>Minimalist retreat</p><div class="specs"><span>5 beds</span><span>6 baths</span><span>5,200 sqft</span></div></div>
+        </div>
+        <div class="project-card fade-up">
+          <div class="card-img"><img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Beach House"></div>
+          <div class="card-content"><h3>Malibu</h3><p>Oceanfront</p><div class="specs"><span>4 beds</span><span>4 baths</span><span>3,800 sqft</span></div></div>
+        </div>
+        <div class="project-card fade-up">
+          <div class="card-img"><img src="https://images.pexels.com/photos/258154/pexels-photo-258154.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Townhouse"></div>
+          <div class="card-content"><h3>SoHo Loft</h3><p>Industrial modern</p><div class="specs"><span>2 beds</span><span>2 baths</span><span>2,100 sqft</span></div></div>
+        </div>
+        <div class="project-card fade-up">
+          <div class="card-img"><img src="https://images.pexels.com/photos/1732414/pexels-photo-1732414.jpeg?auto=compress&cs=tinysrgb&w=600" alt="Mountain Home"></div>
+          <div class="card-content"><h3>Aspen</h3><p>Alpine modern</p><div class="specs"><span>6 beds</span><span>7 baths</span><span>7,400 sqft</span></div></div>
+        </div>
+      </div>
+    </section>
+
+    <!-- WHY CHOOSE US (ACCORDION + IMAGE) -->
+    <section class="container" style="padding:4rem 0 6rem;">
+      <div class="why-grid">
+        <div class="why-left">
+          <h2 style="font-family:'Cormorant Garamond', serif;">Why choose us</h2>
+          <div class="accordion">
+            <div class="accordion-item active">
+              <div class="accordion-title">Transparent Budgets <span class="gold-accent">–</span></div>
+              <div class="accordion-content">Fixed-cost estimates, no hidden fees. Full visibility from blueprint to finish.</div>
+            </div>
+            <div class="accordion-item">
+              <div class="accordion-title">On-Time Delivery <span class="gold-accent">+</span></div>
+              <div class="accordion-content">We honor deadlines with 15+ years of scheduling excellence. 97% on-time record.</div>
+            </div>
+            <div class="accordion-item">
+              <div class="accordion-title">Exceptional Quality <span class="gold-accent">+</span></div>
+              <div class="accordion-content">Master craftsmen, premium materials, and obsessive attention to detail.</div>
+            </div>
+          </div>
+        </div>
+        <div class="why-right fade-up">
+          <img src="https://images.pexels.com/photos/3935326/pexels-photo-3935326.jpeg?auto=compress&cs=tinysrgb&w=1260&h=750&dpr=2" alt="architectural detail">
+        </div>
+      </div>
+    </section>
+
+    <!-- INFINITE MARQUEE (LUXURY GALLERY) -->
+    <div class="marquee-section">
+      <div class="marquee">
+        <img src="https://images.pexels.com/photos/1029599/pexels-photo-1029599.jpeg?auto=compress&cs=tinysrgb&w=600" alt="luxury kitchen">
+        <img src="https://images.pexels.com/photos/1080695/pexels-photo-1080695.jpeg?auto=compress&cs=tinysrgb&w=600" alt="bathroom">
+        <img src="https://images.pexels.com/photos/2079246/pexels-photo-2079246.jpeg?auto=compress&cs=tinysrgb&w=600" alt="living room">
+        <img src="https://images.pexels.com/photos/1370704/pexels-photo-1370704.jpeg?auto=compress&cs=tinysrgb&w=600" alt="staircase">
+        <img src="https://images.pexels.com/photos/1643383/pexels-photo-1643383.jpeg?auto=compress&cs=tinysrgb&w=600" alt="exterior">
+        <img src="https://images.pexels.com/photos/1692693/pexels-photo-1692693.jpeg?auto=compress&cs=tinysrgb&w=600" alt="pool">
+        <img src="https://images.pexels.com/photos/280229/pexels-photo-280229.jpeg?auto=compress&cs=tinysrgb&w=600" alt="facade">
+      </div>
+    </div>
+
+    <!-- SERVICES (CORMORANT) -->
+    <section class="container">
+      <h2 style="text-align:center; font-family:'Cormorant Garamond', serif;">Services</h2>
+      <div class="services-grid">
+        <div class="service-card fade-up"><i class="fas fa-home"></i><h3>Custom Homes</h3><p style="font-size:0.85rem;">Bespoke residences</p></div>
+        <div class="service-card fade-up"><i class="fas fa-hammer"></i><h3>Full Renovations</h3><p style="font-size:0.85rem;">Whole-home transformation</p></div>
+        <div class="service-card fade-up"><i class="fas fa-utensils"></i><h3>Kitchen Remodeling</h3><p style="font-size:0.85rem;">Art + function</p></div>
+        <div class="service-card fade-up"><i class="fas fa-bath"></i><h3>Bathroom Remodeling</h3><p style="font-size:0.85rem;">Spa sanctuaries</p></div>
+        <div class="service-card fade-up"><i class="fas fa-building"></i><h3>Commercial</h3><p style="font-size:0.85rem;">Boutique & corporate</p></div>
+      </div>
+    </section>
+
+    <!-- 5-STEP PROCESS -->
+    <section class="container">
+      <h2 style="text-align:center; font-family:'Cormorant Garamond', serif;">The Strüdel Process</h2>
+      <div class="process">
+        <div class="step"><div class="step-circle">01</div><h4>Consultation</h4></div>
+        <div class="step"><div class="step-circle">02</div><h4>Planning</h4></div>
+        <div class="step"><div class="step-circle">03</div><h4>Design</h4></div>
+        <div class="step"><div class="step-circle">04</div><h4>Construction</h4></div>
+        <div class="step"><div class="step-circle">05</div><h4>Final Walkthrough</h4></div>
+      </div>
+    </section>
+
+    <!-- STATISTICS COUNTERS -->
+    <section class="container stats-grid" id="stats">
+      <div class="stat-item fade-up"><div class="stat-number" data-count="250">0</div><p style="font-size:0.95rem;">Projects Completed</p></div>
+      <div class="stat-item fade-up"><div class="stat-number" data-count="15">0</div><p style="font-size:0.95rem;">Years Experience</p></div>
+      <div class="stat-item fade-up"><div class="stat-number" data-count="98">0</div><p style="font-size:0.95rem;">Client Satisfaction %</p></div>
+      <div class="stat-item fade-up"><div class="stat-number" data-count="27">0</div><p style="font-size:0.95rem;">Award-Winning Team</p></div>
+    </section>
+
+    <!-- TESTIMONIALS (AUTO SLIDE) -->
+    <section class="container" style="padding:2rem 0 4rem;">
+      <h2 style="text-align:center; font-family:'Cormorant Garamond', serif;">Client love</h2>
+      <div class="testimonials-slider" id="testimonialSlider">
+        <div class="testimonial-card"><p>"Absolute perfection. They listened and delivered beyond."</p><div class="stars">★★★★★</div><h4 style="font-family:'Cormorant Garamond';">— Olivia R.</h4></div>
+        <div class="testimonial-card"><p>"Our modern farmhouse is a dream. Highest quality."</p><div class="stars">★★★★★</div><h4 style="font-family:'Cormorant Garamond';">— The Clarks</h4></div>
+        <div class="testimonial-card"><p>"On time, on budget, and exquisite craftsmanship."</p><div class="stars">★★★★★</div><h4 style="font-family:'Cormorant Garamond';">— Marcus W.</h4></div>
+        <div class="testimonial-card"><p>"They made renovation feel effortless."</p><div class="stars">★★★★★</div><h4 style="font-family:'Cormorant Garamond';">— Priya K.</h4></div>
+      </div>
+    </section>
+
+    <!-- STRONG CTA -->
+    <section class="cta-section">
+      <div class="container">
+        <h2 style="font-size:3.8rem; color:#1c1c1c; font-family:'Cormorant Garamond', serif;">Book your free consultation today.</h2>
+        <a href="#booking" class="btn" style="background:#1e1e1e; color:white; border:none; margin-top:2rem; padding:1.1rem 3.5rem;">LET'S GO →</a>
+      </div>
+    </section>
+
+    <!-- CERTIFICATION LOGOS -->
+    <div class="container cert-logos">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/4/4c/NAHB_logo.svg/320px-NAHB_logo.svg.png" alt="NAHB" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/8e/Green_Building_Certification_logo.svg/320px-Green_Building_Certification_logo.svg.png" alt="Green" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/9/9a/AIA_Logo.svg/320px-AIA_Logo.svg.png" alt="AIA" loading="lazy">
+      <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/8/87/LEED_logo.svg/320px-LEED_logo.svg.png" alt="LEED" loading="lazy">
+    </div>
+  </main>
+
+  <!-- LUXURY FOOTER -->
+  <footer>
+    <div class="container footer-grid">
+      <div><h4 style="color:white; font-family:'Cormorant Garamond';">STRÜDEL</h4><p style="font-size:0.8rem; margin-top:1rem;">Minimalist luxury builders since 2008. Architecture-led construction.</p></div>
+      <div><h4 style="color:white; font-family:'Cormorant Garamond';">Sitemap</h4><ul style="list-style:none; margin-top:1rem;"><li>About</li><li>Residential</li><li>Commercial</li><li>Careers</li></ul></div>
+      <div><h4 style="color:white; font-family:'Cormorant Garamond';">Services</h4><ul style="list-style:none; margin-top:1rem;"><li>Custom</li><li>Renovation</li><li>Kitchen/Bath</li><li>Commercial</li></ul></div>
+      <div><h4 style="color:white; font-family:'Cormorant Garamond';">Social</h4><div class="social-icons" style="margin-top:1rem;"><i class="fab fa-instagram"></i><i class="fab fa-linkedin"></i><i class="fab fa-pinterest"></i><i class="fab fa-houzz"></i></div></div>
+    </div>
+    <div class="container" style="border-top:1px solid #3a3a3a; margin-top:2.5rem; padding-top:2rem; text-align:center; font-size:0.8rem;">© 2025 Strüdel Construction. Timeless craft.</div>
+  </footer>
+
+  <!-- BACK TO TOP -->
+  <div class="back-to-top" id="backToTop"><i class="fas fa-arrow-up"></i></div>
+
+  <script>
+    (function() {
+      // STICKY NAV (pixel perfect)
+      const header = document.getElementById('header');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 15) header.classList.add('scrolled');
+        else header.classList.remove('scrolled');
+      });
+
+      // MOBILE HAMBURGER
+      const hamburger = document.getElementById('hamburger');
+      const navContainer = document.querySelector('.nav-container');
+      hamburger.addEventListener('click', (e) => {
+        navContainer.parentElement.classList.toggle('mobile-menu-active');
+      });
+
+      // ACCORDION (Cormorant font active)
+      const accordionItems = document.querySelectorAll('.accordion-item');
+      accordionItems.forEach(item => {
+        const title = item.querySelector('.accordion-title');
+        title.addEventListener('click', () => {
+          item.classList.toggle('active');
+          const span = title.querySelector('span');
+          if (span) span.textContent = item.classList.contains('active') ? '–' : '+';
+        });
+      });
+
+      // FADE-UP OBSERVER (stagger)
+      const faders = document.querySelectorAll('.fade-up');
+      const appearOptions = { threshold: 0.15, rootMargin: '0px 0px -20px 0px' };
+      const appearOnScroll = new IntersectionObserver((entries, observer) => {
+        entries.forEach((entry, index) => {
+          if (!entry.isIntersecting) return;
+          entry.target.style.transitionDelay = (index * 0.06) + 's';
+          entry.target.classList.add('appear');
+          observer.unobserve(entry.target);
+        });
+      }, appearOptions);
+      faders.forEach(f => appearOnScroll.observe(f));
+
+      // COUNTER ANIMATION
+      const statNumbers = document.querySelectorAll('.stat-number');
+      const counterObserver = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+            const el = entry.target;
+            const target = parseInt(el.getAttribute('data-count'));
+            let count = 0;
+            const inc = Math.ceil(target / 55);
+            const updateCounter = () => {
+              if (count < target) {
+                count += inc;
+                if (count > target) count = target;
+                el.innerText = count;
+                setTimeout(updateCounter, 30);
+              } else el.innerText = target;
+            };
+            updateCounter();
+            counterObserver.unobserve(el);
+          }
+        });
+      }, { threshold: 0.5 });
+      statNumbers.forEach(n => counterObserver.observe(n));
+
+      // AUTO SLIDE TESTIMONIALS (pause on hover)
+      const slider = document.getElementById('testimonialSlider');
+      let scrollAmount = 0;
+      let autoSlide = setInterval(() => {
+        if (!slider) return;
+        if (slider.matches(':hover')) return;
+        scrollAmount += slider.clientWidth / 2.5;
+        if (scrollAmount >= slider.scrollWidth - slider.clientWidth) scrollAmount = 0;
+        slider.scrollTo({ left: scrollAmount, behavior: 'smooth' });
+      }, 3000);
+
+      // PROGRESS BAR
+      const progressBar = document.getElementById('progressBar');
+      window.addEventListener('scroll', () => {
+        const winScroll = document.documentElement.scrollTop;
+        const height = document.documentElement.scrollHeight - document.documentElement.clientHeight;
+        progressBar.style.width = (winScroll / height) * 100 + '%';
+      });
+
+      // BACK TO TOP
+      const btt = document.getElementById('backToTop');
+      window.addEventListener('scroll', () => {
+        if (window.scrollY > 500) btt.classList.add('show');
+        else btt.classList.remove('show');
+      });
+      btt.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+      // SOFT PARALLAX
+      window.addEventListener('scroll', () => {
+        const heroImg = document.querySelector('.hero-right img');
+        if (heroImg) heroImg.style.transform = `translateY(${window.scrollY * 0.016}px)`;
+      });
+    })();
+  </script>
+</body>
+</html>
