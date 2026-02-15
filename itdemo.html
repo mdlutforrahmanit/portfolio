@@ -1,0 +1,2063 @@
+<!DOCTYPE html>
+<html lang="bn">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>টেক সলিউশনস - আপনার পূর্ণাঙ্গ আইটি পরিষেবা পার্টনার</title>
+    <meta name="description" content="বাংলাদেশের ব্যবসায়িকদের জন্য পূর্ণাঙ্গ আইটি ও ডিজিটাল সলিউশন। ওয়েব ডেভেলপমেন্ট, ডিজিটাল মার্কেটিং, গ্রাফিক ডিজাইন এবং সম্পূর্ণ ব্যবস্থাপনা পরিষেবা।">
+    <link href="https://fonts.googleapis.com/css2?family=Hind+Siliguri:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+    <style>
+        /* Base Styles - সঠিক স্থানে */
+        :root {
+            --primary-color: #2E7D32;
+            --primary-dark: #1B5E20;
+            --primary-light: #4CAF50;
+            --white: #FFFFFF;
+            --black: #212121;
+            --gray-dark: #424242;
+            --gray: #757575;
+            --gray-light: #BDBDBD;
+            --gray-lighter: #F5F5F5;
+            --shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+            --shadow-hover: 0 8px 24px rgba(0, 0, 0, 0.12);
+            --transition: all 0.3s ease;
+            --border-radius: 8px;
+            --container-width: 1200px;
+            --spacing-xs: 0.5rem;
+            --spacing-sm: 1rem;
+            --spacing-md: 2rem;
+            --spacing-lg: 3rem;
+            --spacing-xl: 4rem;
+        }
+        
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+        
+        html {
+            scroll-behavior: smooth;
+        }
+        
+        body {
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 16px;
+            line-height: 1.6;
+            color: var(--black);
+            background-color: var(--white);
+            overflow-x: hidden;
+        }
+        
+        /* Container ফিক্স */
+        .container {
+            width: 100%;
+            max-width: var(--container-width);
+            margin: 0 auto;
+            padding: 0 var(--spacing-sm);
+        }
+        
+        @media (min-width: 768px) {
+            .container {
+                padding: 0 var(--spacing-md);
+            }
+        }
+        
+        /* Typography */
+        h1, h2, h3, h4 {
+            font-weight: 600;
+            line-height: 1.3;
+            margin-bottom: var(--spacing-sm);
+            color: var(--black);
+        }
+        
+        h1 {
+            font-size: 2.5rem;
+        }
+        
+        h2 {
+            font-size: 2rem;
+        }
+        
+        h3 {
+            font-size: 1.5rem;
+        }
+        
+        p {
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        a {
+            color: inherit;
+            text-decoration: none;
+            transition: var(--transition);
+        }
+        
+        ul {
+            list-style: none;
+        }
+        
+        /* Buttons */
+        .btn {
+            display: inline-block;
+            padding: 0.75rem 1.5rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+            text-align: center;
+            cursor: pointer;
+            transition: var(--transition);
+            border: none;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+        }
+        
+        .btn-primary {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .btn-primary:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-2px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .btn-secondary {
+            background-color: transparent;
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+        }
+        
+        .btn-secondary:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+            transform: translateY(-2px);
+        }
+        
+        /* Header ফিক্স */
+        .header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            background-color: var(--white);
+            box-shadow: var(--shadow);
+            z-index: 1000;
+            padding: 1rem 0;
+        }
+        
+        .header-content {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .logo {
+            font-size: 1.75rem;
+            font-weight: 700;
+            display: flex;
+        }
+        
+        .logo-text {
+            color: var(--black);
+        }
+        
+        .logo-highlight {
+            color: var(--primary-color);
+        }
+        
+        .mobile-menu-btn {
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            width: 30px;
+            height: 21px;
+            background: transparent;
+            border: none;
+            cursor: pointer;
+            z-index: 1001;
+        }
+        
+        @media (min-width: 992px) {
+            .mobile-menu-btn {
+                display: none;
+            }
+        }
+        
+        .mobile-menu-btn span {
+            display: block;
+            height: 3px;
+            width: 100%;
+            background-color: var(--black);
+            transition: var(--transition);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(1) {
+            transform: translateY(9px) rotate(45deg);
+        }
+        
+        .mobile-menu-btn.active span:nth-child(2) {
+            opacity: 0;
+        }
+        
+        .mobile-menu-btn.active span:nth-child(3) {
+            transform: translateY(-9px) rotate(-45deg);
+        }
+        
+        .nav {
+            display: none;
+        }
+        
+        @media (min-width: 992px) {
+            .nav {
+                display: block;
+            }
+        }
+        
+        .nav.active {
+            display: block;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100vh;
+            background-color: var(--white);
+            padding: 5rem 2rem 2rem;
+            z-index: 999;
+            overflow-y: auto;
+        }
+        
+        .nav-list {
+            display: flex;
+            flex-direction: column;
+            gap: 1.5rem;
+        }
+        
+        @media (min-width: 992px) {
+            .nav-list {
+                flex-direction: row;
+                align-items: center;
+                gap: 2rem;
+            }
+        }
+        
+        .nav-link {
+            font-weight: 500;
+            color: var(--gray-dark);
+            position: relative;
+        }
+        
+        .nav-link:hover {
+            color: var(--primary-color);
+        }
+        
+        .nav-cta {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.5rem 1.5rem;
+            border-radius: var(--border-radius);
+        }
+        
+        .nav-cta:hover {
+            background-color: var(--primary-dark);
+            color: var(--white);
+        }
+        
+        /* Hero Section - গুরুত্বপূর্ণ ফিক্স */
+        .hero {
+            padding-top: 8rem;
+            padding-bottom: 4rem;
+            background: var(--white);
+            margin-top: 0;
+        }
+        
+        @media (max-width: 767px) {
+            .hero {
+                padding-top: 6rem;
+                padding-bottom: 3rem;
+            }
+        }
+        
+        .hero-content {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-xl);
+            min-height: 500px;
+        }
+        
+        @media (max-width: 991px) {
+            .hero-content {
+                flex-direction: column;
+                text-align: center;
+            }
+        }
+        
+        .hero-text {
+            flex: 1;
+        }
+        
+        .hero-visual {
+            flex: 1;
+            display: none;
+        }
+        
+        @media (min-width: 992px) {
+            .hero-visual {
+                display: block;
+            }
+        }
+        
+        .hero-title {
+            font-size: 2.5rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--black);
+        }
+        
+        @media (max-width: 767px) {
+            .hero-title {
+                font-size: 2rem;
+            }
+        }
+        
+        .hero-subtitle {
+            font-size: 1.1rem;
+            color: var(--gray);
+            margin-bottom: var(--spacing-md);
+            max-width: 600px;
+        }
+        
+        .hero-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            margin-bottom: var(--spacing-lg);
+            flex-wrap: wrap;
+        }
+        
+        @media (max-width: 767px) {
+            .hero-actions {
+                justify-content: center;
+            }
+        }
+        
+        .trust-indicators {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-md);
+            margin-top: var(--spacing-lg);
+        }
+        
+        @media (min-width: 768px) {
+            .trust-indicators {
+                grid-template-columns: repeat(4, 1fr);
+            }
+        }
+        
+        .trust-item {
+            text-align: center;
+            padding: 1rem;
+            background: var(--gray-lighter);
+            border-radius: var(--border-radius);
+        }
+        
+        .trust-number {
+            display: block;
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        
+        .trust-label {
+            font-size: 0.9rem;
+            color: var(--gray);
+            display: block;
+            margin-top: 0.5rem;
+        }
+        
+        /* Section Common */
+        .section-header {
+            text-align: center;
+            margin-bottom: var(--spacing-lg);
+            padding-top: 2rem;
+        }
+        
+        .section-title {
+            font-size: 2rem;
+            color: var(--black);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        @media (max-width: 767px) {
+            .section-title {
+                font-size: 1.75rem;
+            }
+        }
+        
+        .section-subtitle {
+            color: var(--gray);
+            max-width: 600px;
+            margin: 0 auto;
+        }
+        
+        /* Services Section */
+        .services {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--gray-lighter);
+        }
+        
+        .services-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        @media (min-width: 768px) {
+            .services-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .services-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .service-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .service-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .service-icon {
+            color: var(--primary-color);
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .service-title {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .service-desc {
+            color: var(--gray);
+            margin-bottom: var(--spacing-sm);
+            flex-grow: 0;
+        }
+        
+        .service-benefits {
+            margin-bottom: var(--spacing-md);
+            flex-grow: 1;
+        }
+        
+        .service-benefits li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.5rem;
+        }
+        
+        .service-benefits li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .btn-service {
+            background-color: var(--gray-lighter);
+            color: var(--primary-color);
+            width: 100%;
+            margin-top: var(--spacing-sm);
+        }
+        
+        .btn-service:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        /* Why Choose Us */
+        .why-us {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--white);
+        }
+        
+        .reasons-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        @media (min-width: 768px) {
+            .reasons-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .reasons-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .reason-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            border: 1px solid var(--gray-lighter);
+        }
+        
+        .reason-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .reason-number {
+            font-size: 2rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            opacity: 0.3;
+            line-height: 1;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .reason-title {
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .reason-desc {
+            color: var(--gray);
+        }
+        
+        /* Portfolio */
+        .portfolio {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--gray-lighter);
+        }
+        
+        .portfolio-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        @media (min-width: 768px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(2, 1fr);
+            }
+        }
+        
+        @media (min-width: 992px) {
+            .portfolio-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .portfolio-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+        }
+        
+        .portfolio-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .portfolio-image {
+            height: 200px;
+            background-color: var(--gray-lighter);
+            background-image: linear-gradient(45deg, var(--gray-light) 25%, transparent 25%, transparent 75%, var(--gray-light) 75%, var(--gray-light)), 
+                              linear-gradient(45deg, var(--gray-light) 25%, transparent 25%, transparent 75%, var(--gray-light) 75%, var(--gray-light));
+            background-size: 20px 20px;
+            background-position: 0 0, 10px 10px;
+        }
+        
+        .portfolio-info {
+            padding: var(--spacing-md);
+        }
+        
+        .portfolio-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .portfolio-category {
+            color: var(--primary-color);
+            font-weight: 500;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        .portfolio-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        .portfolio-cta {
+            text-align: center;
+        }
+        
+        /* Process Section */
+        .process {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--white);
+        }
+        
+        .process-steps {
+            display: flex;
+            flex-direction: column;
+            gap: var(--spacing-md);
+            position: relative;
+        }
+        
+        @media (min-width: 768px) {
+            .process-steps {
+                flex-direction: row;
+                justify-content: space-between;
+                position: relative;
+            }
+            
+            .process-steps:before {
+                content: '';
+                position: absolute;
+                top: 30px;
+                left: 50px;
+                right: 50px;
+                height: 2px;
+                background-color: var(--gray-light);
+                z-index: 1;
+            }
+        }
+        
+        .process-step {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            text-align: center;
+            box-shadow: var(--shadow);
+            position: relative;
+            z-index: 2;
+            flex: 1;
+        }
+        
+        @media (max-width: 767px) {
+            .process-step {
+                display: flex;
+                align-items: center;
+                gap: var(--spacing-sm);
+                text-align: left;
+            }
+        }
+        
+        .step-number {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            width: 60px;
+            height: 60px;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border-radius: 50%;
+            font-size: 1.5rem;
+            font-weight: 700;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        @media (max-width: 767px) {
+            .step-number {
+                flex-shrink: 0;
+                margin-bottom: 0;
+                width: 50px;
+                height: 50px;
+                font-size: 1.25rem;
+            }
+        }
+        
+        .step-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xs);
+        }
+        
+        @media (max-width: 767px) {
+            .step-title {
+                margin-bottom: 0;
+                font-size: 1.1rem;
+            }
+        }
+        
+        .step-desc {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        @media (max-width: 767px) {
+            .step-desc {
+                display: none;
+            }
+        }
+        
+        /* Testimonials */
+        .testimonials {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--gray-lighter);
+        }
+        
+        .testimonials-grid {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+        }
+        
+        @media (min-width: 768px) {
+            .testimonials-grid {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .testimonial-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .testimonial-content {
+            flex-grow: 1;
+            margin-bottom: var(--spacing-md);
+            position: relative;
+        }
+        
+        .testimonial-content:before {
+            content: '"';
+            position: absolute;
+            top: -10px;
+            left: -5px;
+            font-size: 4rem;
+            color: var(--primary-color);
+            opacity: 0.2;
+            line-height: 1;
+        }
+        
+        .testimonial-text {
+            color: var(--gray-dark);
+            font-style: italic;
+            position: relative;
+            z-index: 1;
+        }
+        
+        .testimonial-author {
+            display: flex;
+            align-items: center;
+            gap: var(--spacing-sm);
+        }
+        
+        .author-avatar {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--gray-lighter);
+            flex-shrink: 0;
+        }
+        
+        .author-name {
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .author-role {
+            color: var(--gray);
+            font-size: 0.9rem;
+        }
+        
+        /* Pricing */
+        .pricing {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--white);
+        }
+        
+        .pricing-cards {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-md);
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        @media (min-width: 768px) {
+            .pricing-cards {
+                grid-template-columns: repeat(3, 1fr);
+                align-items: center;
+            }
+        }
+        
+        .pricing-card {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            position: relative;
+            display: flex;
+            flex-direction: column;
+            height: 100%;
+        }
+        
+        .pricing-card.featured {
+            transform: scale(1.05);
+            border: 2px solid var(--primary-color);
+        }
+        
+        @media (max-width: 767px) {
+            .pricing-card.featured {
+                transform: none;
+            }
+        }
+        
+        .pricing-card:hover {
+            transform: translateY(-5px);
+            box-shadow: var(--shadow-hover);
+        }
+        
+        .pricing-card.featured:hover {
+            transform: translateY(-5px) scale(1.05);
+        }
+        
+        .pricing-badge {
+            position: absolute;
+            top: -12px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: 0.25rem 1rem;
+            border-radius: 20px;
+            font-size: 0.8rem;
+            font-weight: 500;
+        }
+        
+        .pricing-header {
+            text-align: center;
+            margin-bottom: var(--spacing-md);
+            padding-bottom: var(--spacing-md);
+            border-bottom: 1px solid var(--gray-lighter);
+        }
+        
+        .pricing-title {
+            font-size: 1.5rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        .pricing-price {
+            color: var(--gray);
+        }
+        
+        .price-amount {
+            display: block;
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: var(--primary-color);
+            line-height: 1;
+        }
+        
+        .pricing-features {
+            flex-grow: 1;
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .pricing-features li {
+            position: relative;
+            padding-left: 1.5rem;
+            margin-bottom: 0.75rem;
+        }
+        
+        .pricing-features li:before {
+            content: "✓";
+            position: absolute;
+            left: 0;
+            color: var(--primary-color);
+            font-weight: bold;
+        }
+        
+        .btn-pricing {
+            background-color: var(--white);
+            color: var(--primary-color);
+            border: 2px solid var(--primary-color);
+            width: 100%;
+            margin-top: var(--spacing-md);
+        }
+        
+        .btn-pricing:hover {
+            background-color: var(--primary-color);
+            color: var(--white);
+        }
+        
+        .pricing-note {
+            text-align: center;
+            color: var(--gray);
+            font-style: italic;
+        }
+        
+        /* FAQ */
+        .faq {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--gray-lighter);
+        }
+        
+        .faq-list {
+            max-width: 800px;
+            margin: 0 auto;
+        }
+        
+        .faq-item {
+            margin-bottom: var(--spacing-sm);
+            border: 1px solid var(--gray-lighter);
+            border-radius: var(--border-radius);
+            overflow: hidden;
+        }
+        
+        .faq-question {
+            width: 100%;
+            padding: var(--spacing-md);
+            text-align: left;
+            background-color: var(--white);
+            border: none;
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+            font-weight: 500;
+            color: var(--black);
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            transition: var(--transition);
+        }
+        
+        .faq-question:hover {
+            background-color: var(--gray-lighter);
+        }
+        
+        .faq-icon {
+            font-size: 1.5rem;
+            font-weight: 300;
+            color: var(--primary-color);
+            transition: var(--transition);
+        }
+        
+        .faq-question.active .faq-icon {
+            transform: rotate(45deg);
+        }
+        
+        .faq-answer {
+            padding: 0 var(--spacing-md);
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease, padding 0.3s ease;
+        }
+        
+        .faq-answer.active {
+            padding: 0 var(--spacing-md) var(--spacing-md);
+            max-height: 500px;
+        }
+        
+        /* CTA Banner */
+        .cta-banner {
+            background-color: var(--primary-color);
+            color: var(--white);
+            padding: var(--spacing-xl) 0;
+            text-align: center;
+        }
+        
+        .cta-title {
+            color: var(--white);
+            font-size: 2rem;
+            margin-bottom: var(--spacing-sm);
+        }
+        
+        @media (max-width: 767px) {
+            .cta-title {
+                font-size: 1.75rem;
+            }
+        }
+        
+        .cta-subtitle {
+            font-size: 1.1rem;
+            margin-bottom: var(--spacing-lg);
+            opacity: 0.9;
+        }
+        
+        .cta-actions {
+            display: flex;
+            gap: var(--spacing-sm);
+            justify-content: center;
+            flex-wrap: wrap;
+        }
+        
+        .btn-large {
+            padding: 1rem 2rem;
+            font-size: 1.1rem;
+        }
+        
+        /* Contact Section */
+        .contact {
+            padding: var(--spacing-xl) 0;
+            background-color: var(--white);
+        }
+        
+        .contact-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+        }
+        
+        @media (min-width: 992px) {
+            .contact-content {
+                grid-template-columns: 1fr 1fr;
+            }
+        }
+        
+        .contact-method {
+            margin-bottom: var(--spacing-lg);
+        }
+        
+        .contact-method-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-xs);
+            color: var(--primary-color);
+        }
+        
+        .contact-detail {
+            display: block;
+            font-size: 1.1rem;
+            margin-bottom: 0.25rem;
+        }
+        
+        .contact-detail:hover {
+            color: var(--primary-color);
+        }
+        
+        .contact-note {
+            font-size: 0.9rem;
+            color: var(--gray);
+        }
+        
+        .payment-methods {
+            margin-top: var(--spacing-xl);
+        }
+        
+        .payment-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--primary-color);
+        }
+        
+        .payment-icons {
+            display: flex;
+            flex-wrap: wrap;
+            gap: var(--spacing-sm);
+        }
+        
+        .payment-icon {
+            background-color: var(--gray-lighter);
+            padding: 0.5rem 1rem;
+            border-radius: var(--border-radius);
+            font-weight: 500;
+        }
+        
+        .contact-form-container {
+            background-color: var(--white);
+            border-radius: var(--border-radius);
+            padding: var(--spacing-md);
+            box-shadow: var(--shadow);
+        }
+        
+        .form-group {
+            margin-bottom: var(--spacing-md);
+        }
+        
+        .form-group input,
+        .form-group select,
+        .form-group textarea {
+            width: 100%;
+            padding: 0.75rem 1rem;
+            border: 1px solid var(--gray-light);
+            border-radius: var(--border-radius);
+            font-family: 'Hind Siliguri', sans-serif;
+            font-size: 1rem;
+            transition: var(--transition);
+        }
+        
+        .form-group input:focus,
+        .form-group select:focus,
+        .form-group textarea:focus {
+            outline: none;
+            border-color: var(--primary-color);
+            box-shadow: 0 0 0 3px rgba(46, 125, 50, 0.1);
+        }
+        
+        .btn-full {
+            width: 100%;
+        }
+        
+        /* Footer */
+        .footer {
+            background-color: var(--black);
+            color: var(--white);
+            padding: var(--spacing-xl) 0 var(--spacing-md);
+        }
+        
+        .footer-content {
+            display: grid;
+            grid-template-columns: 1fr;
+            gap: var(--spacing-xl);
+            margin-bottom: var(--spacing-xl);
+        }
+        
+        @media (min-width: 768px) {
+            .footer-content {
+                grid-template-columns: 1fr 2fr;
+            }
+        }
+        
+        .footer-logo .logo {
+            margin-bottom: var(--spacing-sm);
+            font-size: 1.75rem;
+        }
+        
+        .footer-description {
+            color: var(--gray-light);
+            max-width: 300px;
+        }
+        
+        .footer-links {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: var(--spacing-lg);
+        }
+        
+        @media (min-width: 768px) {
+            .footer-links {
+                grid-template-columns: repeat(3, 1fr);
+            }
+        }
+        
+        .footer-title {
+            font-size: 1.25rem;
+            margin-bottom: var(--spacing-sm);
+            color: var(--white);
+        }
+        
+        .footer-list li {
+            margin-bottom: 0.75rem;
+        }
+        
+        .footer-list a {
+            color: var(--gray-light);
+        }
+        
+        .footer-list a:hover {
+            color: var(--primary-light);
+        }
+        
+        .footer-bottom {
+            border-top: 1px solid var(--gray-dark);
+            padding-top: var(--spacing-md);
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: var(--spacing-md);
+        }
+        
+        @media (min-width: 768px) {
+            .footer-bottom {
+                flex-direction: row;
+                justify-content: space-between;
+            }
+        }
+        
+        .social-links {
+            display: flex;
+            gap: var(--spacing-md);
+        }
+        
+        .social-link {
+            color: var(--gray-light);
+        }
+        
+        .social-link:hover {
+            color: var(--primary-light);
+        }
+        
+        .copyright {
+            color: var(--gray-light);
+            font-size: 0.9rem;
+            text-align: center;
+        }
+        
+        /* Back to Top Button */
+        .back-to-top {
+            position: fixed;
+            bottom: 2rem;
+            right: 2rem;
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background-color: var(--primary-color);
+            color: var(--white);
+            border: none;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            box-shadow: var(--shadow);
+            transition: var(--transition);
+            z-index: 999;
+            opacity: 0;
+            visibility: hidden;
+        }
+        
+        .back-to-top.visible {
+            opacity: 1;
+            visibility: visible;
+        }
+        
+        .back-to-top:hover {
+            background-color: var(--primary-dark);
+            transform: translateY(-3px);
+        }
+        
+        /* Utility Classes */
+        .text-center {
+            text-align: center;
+        }
+        
+        /* Animation Classes */
+        .fade-in {
+            opacity: 0;
+            transform: translateY(20px);
+            transition: opacity 0.5s ease, transform 0.5s ease;
+        }
+        
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+        
+        /* Fix for mobile menu */
+        @media (max-width: 991px) {
+            .nav.active {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+            }
+        }
+        
+        /* Ensure sections are visible */
+        section {
+            display: block !important;
+            visibility: visible !important;
+        }
+        
+        /* Fix for padding issues */
+        main {
+            padding-top: 0;
+        }
+    </style>
+</head>
+<body>
+    <!-- Header Navigation -->
+    <header class="header">
+        <div class="container">
+            <div class="header-content">
+                <a href="#" class="logo">
+                    <span class="logo-text">টেক</span>
+                    <span class="logo-highlight">সলিউশনস</span>
+                </a>
+                
+                <button class="mobile-menu-btn" id="mobileMenuBtn" aria-label="মেনু খুলুন">
+                    <span></span>
+                    <span></span>
+                    <span></span>
+                </button>
+                
+                <nav class="nav" id="mainNav">
+                    <ul class="nav-list">
+                        <li><a href="#home" class="nav-link">হোম</a></li>
+                        <li><a href="#services" class="nav-link">সেবাসমূহ</a></li>
+                        <li><a href="#portfolio" class="nav-link">পোর্টফোলিও</a></li>
+                        <li><a href="#process" class="nav-link">প্রক্রিয়া</a></li>
+                        <li><a href="#contact" class="nav-link">যোগাযোগ</a></li>
+                        <li><a href="tel:+8801712345678" class="nav-cta">কল করুন</a></li>
+                    </ul>
+                </nav>
+            </div>
+        </div>
+    </header>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="container">
+            <div class="hero-content">
+                <div class="hero-text">
+                    <h1 class="hero-title">আপনার ব্যবসাকে ডিজিটাল দুনিয়ায় সেরা অবস্থানে নিয়ে যান</h1>
+                    <p class="hero-subtitle">বাংলাদেশের ব্যবসায়িকদের জন্য বিশেষায়িত আইটি সমাধান। ১০০+ ক্লাইেন্টের বিশ্বাস অর্জনকারী সহযোগী।</p>
+                    
+                    <div class="hero-actions">
+                        <a href="#contact" class="btn btn-primary">ফ্রি কনসালটেশন নিন</a>
+                        <a href="tel:+8801712345678" class="btn btn-secondary">এখনই কল করুন</a>
+                    </div>
+                    
+                    <div class="trust-indicators">
+                        <div class="trust-item">
+                            <span class="trust-number">১০০+</span>
+                            <span class="trust-label">সন্তুষ্ট ক্লাইেন্ট</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-number">৫+</span>
+                            <span class="trust-label">বছরের অভিজ্ঞতা</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-number">৩০০+</span>
+                            <span class="trust-label">প্রোজেক্ট সম্পন্ন</span>
+                        </div>
+                        <div class="trust-item">
+                            <span class="trust-number">৯৮%</span>
+                            <span class="trust-label">সন্তুষ্টির হার</span>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="hero-visual">
+                    <!-- Visual placeholder - in real site would have an image -->
+                    <div style="width: 100%; height: 300px; background: #f0f0f0; border-radius: 10px; display: flex; align-items: center; justify-content: center;">
+                        <div style="text-align: center; color: #2E7D32; font-weight: bold;">
+                            ডিজিটাল সলিউশন<br>আপনার ব্যবসার জন্য
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Services Section -->
+    <section class="services" id="services">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">আমাদের বিশেষায়িত সেবাসমূহ</h2>
+                <p class="section-subtitle">ব্যবসায়িক চাহিদা অনুযায়ী সম্পূর্ণ কাস্টোমাইজড আইটি সমাধান</p>
+            </div>
+            
+            <div class="services-grid">
+                <!-- Service 1 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M12 2C6.48 2 2 6.48 2 12s4.48 10 10 10 10-4.48 10-10S17.52 2 12 2zm-1 17.93c-3.95-.49-7-3.85-7-7.93 0-.62.08-1.21.21-1.79L9 15v1c0 1.1.9 2 2 2v1.93zm6.9-2.54c-.26-.81-1-1.39-1.9-1.39h-1v-3c0-.55-.45-1-1-1H8v-2h2c.55 0 1-.45 1-1V7h2c1.1 0 2-.9 2-2v-.41c2.93 1.19 5 4.06 5 7.41 0 2.08-.8 3.97-2.1 5.39z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">ওয়েব ডিজাইন</h3>
+                    <p class="service-desc">আধুনিক, রেস্পন্সিভ এবং ব্যবহারকারীবান্ধব ওয়েবসাইট ডিজাইন যা আপনার ব্র্যান্ডকে দেয় অনন্য পরিচয়।</p>
+                    <ul class="service-benefits">
+                        <li>মোবাইল ফ্রেন্ডলি ডিজাইন</li>
+                        <li>দ্রুত লোডিং স্পীড</li>
+                        <li>SEO অ্যাডভান্সড স্ট্রাকচার</li>
+                        <li>ইউজার এক্সপেরিয়েন্স ফোকাসড</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-service">বিস্তারিত জানুন</a>
+                </div>
+                
+                <!-- Service 2 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-8 14H7v-4h4v4zm0-6H7V7h4v4zm6 6h-4v-4h4v4zm0-6h-4V7h4v4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">ল্যান্ডিং পেজ ডিজাইন</h3>
+                    <p class="service-desc">হাই-কনভার্সন ল্যান্ডিং পেজ যা দর্শকদের ক্লাইেন্টে রূপান্তর করে এবং বিক্রয় বাড়ায়।</p>
+                    <ul class="service-benefits">
+                        <li>উচ্চ রূপান্তর হার</li>
+                        <li>A/B টেস্টিং সুবিধা</li>
+                        <li>লিড জেনারেশন ফোকাসড</li>
+                        <li>দ্রুত ডেলিভারি</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-service">বিস্তারিত জানুন</a>
+                </div>
+                
+                <!-- Service 3 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M9.4 16.6L4.8 12l4.6-4.6L8 6l-6 6 6 6 1.4-1.4zm5.2 0l4.6-4.6-4.6-4.6L16 6l6 6-6 6-1.4-1.4z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">ওয়েব ডেভেলপমেন্ট</h3>
+                    <p class="service-desc">সব ধরণের ব্যবসায়িক প্রয়োজন অনুযায়ী কাস্টম ওয়েব অ্যাপ্লিকেশন ডেভেলপমেন্ট।</p>
+                    <ul class="service-benefits">
+                        <li>কাস্টম কোড ডেভেলপমেন্ট</li>
+                        <li>সিকিউরিটি ফোকাসড</li>
+                        <li>স্কেলেবল আর্কিটেকচার</li>
+                        <li>ডাটাবেস ম্যানেজমেন্ট</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-service">বিস্তারিত জানুন</a>
+                </div>
+                
+                <!-- Service 4 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M11.99 2C6.47 2 2 6.48 2 12s4.47 10 9.99 10C17.52 22 22 17.52 22 12S17.52 2 11.99 2zM12 20c-4.42 0-8-3.58-8-8s3.58-8 8-8 8 3.58 8 8-3.58 8-8 8zm3.5-9c.83 0 1.5-.67 1.5-1.5S16.33 8 15.5 8 14 8.67 14 9.5s.67 1.5 1.5 1.5zm-7 0c.83 0 1.5-.67 1.5-1.5S9.33 8 8.5 8 7 8.67 7 9.5 7.67 11 8.5 11zm3.5 6.5c2.33 0 4.31-1.46 5.11-3.5H6.89c.8 2.04 2.78 3.5 5.11 3.5z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">ডিজিটাল মার্কেটিং</h3>
+                    <p class="service-desc">সোশ্যাল মিডিয়া, এসইও এবং কনটেন্ট মার্কেটিং এর মাধ্যমে আপনার ব্র্যান্ডকে লক্ষ্য গ্রাহকের কাছে পৌঁছে দেই।</p>
+                    <ul class="service-benefits">
+                        <li>সোশ্যাল মিডিয়া মার্কেটিং</li>
+                        <li>সার্চ ইঞ্জিন অপ্টিমাইজেশন</li>
+                        <li>কনটেন্ট মার্কেটিং</li>
+                        <li>পারফরমেন্স অ্যানালিটিক্স</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-service">বিস্তারিত জানুন</a>
+                </div>
+                
+                <!-- Service 5 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M19 3H5c-1.1 0-2 .9-2 2v14c0 1.1.9 2 2 2h14c1.1 0 2-.9 2-2V5c0-1.1-.9-2-2-2zm-5 14H7v-2h7v2zm3-4H7v-2h10v2zm0-4H7V7h10v2z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">গ্রাফিক ডিজাইন</h3>
+                    <p class="service-desc">ব্র্যান্ড আইডেন্টিটি, লোগো, ব্রোশার, ব্যানার এবং সকল প্রকার মার্কেটিং ম্যাটেরিয়াল ডিজাইন।</p>
+                    <ul class="service-benefits">
+                        <li>ব্র্যান্ড আইডেন্টিটি ডিজাইন</li>
+                        <li>প্রিন্ট মিডিয়া ডিজাইন</li>
+                        <li>ডিজিটাল মিডিয়া ডিজাইন</li>
+                        <li>মোশন গ্রাফিক্স</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-service">বিস্তারিত জানুন</a>
+                </div>
+                
+                <!-- Service 6 -->
+                <div class="service-card">
+                    <div class="service-icon">
+                        <svg viewBox="0 0 24 24" width="48" height="48">
+                            <path fill="currentColor" d="M21 11.01L3 11v2h18v-2zM3 16h12v2H3v-2zM21 6H3v2.01L21 8V6z"/>
+                        </svg>
+                    </div>
+                    <h3 class="service-title">ওয়েবসাইট ম্যানেজমেন্ট</h3>
+                    <p class="service-desc">ওয়েবসাইট হোস্টিং, রেগুলার আপডেট, সিকিউরিটি এবং সম্পূর্ণ রক্ষণাবেক্ষণ পরিষেবা।</p>
+                    <ul class="service-benefits">
+                        <li>২৪/৭ মনিটরিং</li>
+                        <li>রেগুলার ব্যাকআপ</li>
+                        <li>সিকিউরিটি আপডেট</li>
+                        <li>টেকনিক্যাল সাপোর্ট</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-service">বিস্তারিত জানুন</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Why Choose Us Section -->
+    <section class="why-us">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">কেন টেক সলিউশনস বেছে নেবেন?</h2>
+                <p class="section-subtitle">বাংলাদেশের ব্যবসায়িকদের জন্য বিশেষ সুবিধাসমূহ</p>
+            </div>
+            
+            <div class="reasons-grid">
+                <div class="reason-card">
+                    <div class="reason-number">০১</div>
+                    <h3 class="reason-title">বাংলাদেশি বাজারের অভিজ্ঞতা</h3>
+                    <p class="reason-desc">আমরা বাংলাদেশের ব্যবসায়িক পরিবেশ, চ্যালেঞ্জ এবং সুযোগগুলো গভীরভাবে বুঝি।</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">০২</div>
+                    <h3 class="reason-title">সাশ্রয়ী মূল্যে প্রিমিয়াম মান</h3>
+                    <p class="reason-desc">স্থানীয় বাজারে সাশ্রয়ী মূল্যে আন্তর্জাতিক মানের সেবা প্রদান করি।</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">০৩</div>
+                    <h3 class="reason-title">দ্রুত ডেলিভারি</h3>
+                    <p class="reason-desc">আমাদের দক্ষ টিম সময়ের আগেই প্রোজেক্ট ডেলিভারি নিশ্চিত করে।</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">০৪</div>
+                    <h3 class="reason-title">ডেডিকেটেড সাপোর্ট</h3>
+                    <p class="reason-desc">প্রতিটি ক্লাইেন্টের জন্য আলাদা সাপোর্ট এক্সিকিউটিভ নিযুক্ত থাকেন।</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">০৫</div>
+                    <h3 class="reason-title">কাস্টম স্ট্র্যাটেজি</h3>
+                    <p class="reason-desc">প্রতিটি ব্যবসার জন্য আলাদা কৌশল প্রণয়ন এবং প্রয়োগ করি।</p>
+                </div>
+                
+                <div class="reason-card">
+                    <div class="reason-number">০৬</div>
+                    <h3 class="reason-title">ROI ফোকাসড মার্কেটিং</h3>
+                    <p class="reason-desc">আপনার বিনিয়োগের উপর সর্বোচ্চ রিটার্ন নিশ্চিত করি ডেটা-ড্রিভেন মার্কেটিং এর মাধ্যমে।</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Portfolio Section -->
+    <section class="portfolio" id="portfolio">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">আমাদের সম্প্রতিক কাজ</h2>
+                <p class="section-subtitle">বিভিন্ন সেক্টরের জন্য আমাদের তৈরি করা কিছু উল্লেখযোগ্য প্রোজেক্ট</p>
+            </div>
+            
+            <div class="portfolio-grid">
+                <div class="portfolio-card">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">ফ্যাশন ই-কমার্স স্টোর</h3>
+                        <p class="portfolio-category">ই-কমার্স ওয়েবসাইট</p>
+                        <p class="portfolio-desc">সরাসরি বিক্রয় বৃদ্ধি ২০০%</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">হেলথকেয়ার কনসালটেশন প্ল্যাটফর্ম</h3>
+                        <p class="portfolio-category">ওয়েব অ্যাপ্লিকেশন</p>
+                        <p class="portfolio-desc">মাসিক ব্যবহারকারী ১০,০০০+</p>
+                    </div>
+                </div>
+                
+                <div class="portfolio-card">
+                    <div class="portfolio-image"></div>
+                    <div class="portfolio-info">
+                        <h3 class="portfolio-title">রেস্তোরাঁর অর্ডারিং সিস্টেম</h3>
+                        <p class="portfolio-category">মোবাইল অ্যাপ + ওয়েবসাইট</p>
+                        <p class="portfolio-desc">অর্ডার প্রক্রিয়া সহজিকরণ</p>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="portfolio-cta">
+                <a href="#contact" class="btn btn-primary">আরও কাজ দেখুন</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Process Section -->
+    <section class="process" id="process">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">আমাদের কাজের প্রক্রিয়া</h2>
+                <p class="section-subtitle">সুবিন্যস্ত প্রক্রিয়ার মাধ্যমে সফলতা নিশ্চিতকরণ</p>
+            </div>
+            
+            <div class="process-steps">
+                <div class="process-step">
+                    <div class="step-number">১</div>
+                    <h3 class="step-title">কনসালটেশন</h3>
+                    <p class="step-desc">আপনার প্রয়োজনীয়তা বুঝা এবং বিশ্লেষণ</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">২</div>
+                    <h3 class="step-title">পরিকল্পনা</h3>
+                    <p class="step-desc">প্রকল্পের রোডম্যাপ ও কৌশল নির্ধারণ</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">৩</div>
+                    <h3 class="step-title">ডিজাইন</h3>
+                    <p class="step-desc">ইউজার ইন্টারফেস ও অভিজ্ঞতা ডিজাইন</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">৪</div>
+                    <h3 class="step-title">ডেভেলপমেন্ট</h3>
+                    <p class="step-desc">কোডিং ও ফাংশনালিটি বাস্তবায়ন</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">৫</div>
+                    <h3 class="step-title">লঞ্চ</h3>
+                    <p class="step-desc">টেস্টিং ও লাইভ সার্ভারে স্থাপন</p>
+                </div>
+                
+                <div class="process-step">
+                    <div class="step-number">৬</div>
+                    <h3 class="step-title">সাপোর্ট</h3>
+                    <p class="step-desc">রক্ষণাবেক্ষণ ও প্রযুক্তিগত সহায়তা</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Testimonials Section -->
+    <section class="testimonials">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">ক্লায়েন্টরা কি বলেন</h2>
+                <p class="section-subtitle">আমাদের সাথে কাজ করা ব্যবসায়িকদের অভিজ্ঞতা</p>
+            </div>
+            
+            <div class="testimonials-grid">
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"টেক সলিউশনস এর মাধ্যমে আমাদের ফ্যাশন ব্র্যান্ডের ওয়েবসাইট তৈরি করিয়েছি। ৬ মাসের মধ্যে আমাদের অনলাইন বিক্রয় ১৫০% বৃদ্ধি পেয়েছে। তাদের সাপোর্ট সিস্টেম অত্যন্ত দ্রুত এবং কার্যকরী।"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">রিয়া আহমেদ</h4>
+                            <p class="author-role">মালিক, "ফ্যাশন ট্রেন্ডস"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"আমাদের রেস্তোরাঁর জন্য অর্ডারিং সিস্টেম ডেভেলপ করেছিল টেক সলিউশনস। এখন আমাদের কর্মীরা আগের চেয়ে ৫০% কম সময়ে অর্ডার ম্যানেজ করতে পারছেন। গ্রাহক সন্তুষ্টিও বেড়েছে।"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">জাহিদ হাসান</h4>
+                            <p class="author-role">মালিক, "স্পাইস কিচেন"</p>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="testimonial-card">
+                    <div class="testimonial-content">
+                        <p class="testimonial-text">"ডিজিটাল মার্কেটিং এর জন্য টেক সলিউশনস এর সাথে কাজ করছি ২ বছর ধরে। আমাদের ব্র্যান্ড অ্যাওয়ারনেস অত্যন্ত বৃদ্ধি পেয়েছে এবং মাসিক লিড জেনারেশন ৩০০% বেড়েছে। তাদের ROI ফোকাসড অ্যাপ্রোচ সত্যিই প্রশংসনীয়।"</p>
+                    </div>
+                    <div class="testimonial-author">
+                        <div class="author-avatar"></div>
+                        <div class="author-info">
+                            <h4 class="author-name">ফারহান ইসলাম</h4>
+                            <p class="author-role">সিইও, "গ্রোথ কনসালটেন্টস"</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Pricing Section -->
+    <section class="pricing">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">সাশ্রয়ী মূল্যের প্যাকেজ</h2>
+                <p class="section-subtitle">বিভিন্ন বাজেটের জন্য উপযুক্ত প্যাকেজ</p>
+            </div>
+            
+            <div class="pricing-cards">
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">স্টার্টার</h3>
+                        <div class="pricing-price">শুরু থেকে<br><span class="price-amount">৳১৫,০০০</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>৫ পেজ ওয়েবসাইট</li>
+                        <li>বেসিক SEO</li>
+                        <li>মোবাইল রেস্পন্সিভ</li>
+                        <li>কন্টাক্ট ফর্ম</li>
+                        <li>৬ মাস সাপোর্ট</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-pricing">প্যাকেজ নিন</a>
+                </div>
+                
+                <div class="pricing-card featured">
+                    <div class="pricing-badge">সর্বাধিক জনপ্রিয়</div>
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">বিজনেস</h3>
+                        <div class="pricing-price">শুরু থেকে<br><span class="price-amount">৳৩৫,০০০</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>১০-১৫ পেজ ওয়েবসাইট</li>
+                        <li>এডভান্সড SEO</li>
+                        <li>ই-কমার্স ফাংশনালিটি</li>
+                        <li>সামাজিক মাধ্যম সংযোগ</li>
+                        <li>১ বছর সাপোর্ট</li>
+                        <li>মাসিক অ্যানালিটিক্স</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-primary">প্যাকেজ নিন</a>
+                </div>
+                
+                <div class="pricing-card">
+                    <div class="pricing-header">
+                        <h3 class="pricing-title">প্রিমিয়াম</h3>
+                        <div class="pricing-price">শুরু থেকে<br><span class="price-amount">৳৭০,০০০</span></div>
+                    </div>
+                    <ul class="pricing-features">
+                        <li>অসীম পেজ ওয়েবসাইট</li>
+                        <li>কাস্টম ওয়েব অ্যাপ্লিকেশন</li>
+                        <li>পূর্ণাঙ্গ ই-কমার্স সলিউশন</li>
+                        <li>ডিজিটাল মার্কেটিং পরিষেবা</li>
+                        <li>২ বছর সাপোর্ট</li>
+                        <li>ডেডিকেটেড অ্যাকাউন্ট ম্যানেজার</li>
+                    </ul>
+                    <a href="#contact" class="btn btn-pricing">প্যাকেজ নিন</a>
+                </div>
+            </div>
+            
+            <div class="pricing-note">
+                <p>সকল প্যাকেজ কাস্টোমাইজযোগ্য। আপনার প্রয়োজন অনুযায়ী আমরা প্যাকেজ মডিফাই করতে পারি।</p>
+            </div>
+        </div>
+    </section>
+
+    <!-- FAQ Section -->
+    <section class="faq">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">সচরাচর জিজ্ঞাসিত প্রশ্ন</h2>
+                <p class="section-subtitle">আপনার কিছু সাধারণ প্রশ্নের উত্তর</p>
+            </div>
+            
+            <div class="faq-list">
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>কত দিনে ওয়েবসাইট তৈরি হবে?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>ওয়েবসাইটের ধরন এবং জটিলতার উপর নির্ভর করে সময় পরিবর্তিত হয়। সাধারণত একটি বেসিক ওয়েবসাইট ৭-১০ কর্মদিবসে, ই-কমার্স সাইট ৩-৪ সপ্তাহে এবং কাস্টম ওয়েব অ্যাপ্লিকেশন ৪-৮ সপ্তাহে তৈরি হয়ে যায়।</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>ওয়েবসাইট তৈরি পর কি সাপোর্ট পাবো?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>হ্যাঁ, প্রতিটি প্যাকেজের সাথে নির্দিষ্ট সময়ের সাপোর্ট অন্তর্ভুক্ত থাকে। স্টার্টার প্যাকেজে ৬ মাস, বিজনেস প্যাকেজে ১ বছর এবং প্রিমিয়াম প্যাকেজে ২ বছর সাপোর্ট পাবেন। সাপোর্টের মধ্যে রয়েছে টেকনিকাল ইস্যু সমাধান, মাইনর আপডেট এবং নিরাপত্তা মনিটরিং।</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>ডোমেইন ও হোস্টিং কি আপনারা দেন?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>হ্যাঁ, আমরা ডোমেইন রেজিস্ট্রেশন এবং হোস্টিং সার্ভিস প্রদান করি। আপনি চাইলে নিজেও ডোমেইন-হোস্টিং কিনে আমাদের দিয়ে কাজ করাতে পারেন। তবে আমরা রেকমেন্ড করি আমাদের হোস্টিং ব্যবহার করতে, কারণ এটি বাংলাদেশী সার্ভার থেকে হোস্ট করা হয় এবং দ্রুত স্পিড দেয়।</p>
+                    </div>
+                </div>
+                
+                <div class="faq-item">
+                    <button class="faq-question">
+                        <span>কিস্তিতে পেমেন্ট করা যাবে?</span>
+                        <span class="faq-icon">+</span>
+                    </button>
+                    <div class="faq-answer">
+                        <p>হ্যাঁ, আমরা কিস্তিতে পেমেন্টের সুবিধা দিই। সাধারণত ৫০% অগ্রিম এবং বাকি ৫০% কাজ শেষে ডেলিভারির সময়। বড় প্রোজেক্টের ক্ষেত্রে ৩ কিস্তিতে পেমেন্টেরও ব্যবস্থা রয়েছে। আমরা বিকাশ, নগদ, রকেট এবং ব্যাংক ট্রান্সফার সব ধরনের পেমেন্ট গ্রহণ করি।</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- CTA Banner -->
+    <section class="cta-banner">
+        <div class="container">
+            <div class="cta-content">
+                <h2 class="cta-title">আজই শুরু করুন আপনার ডিজিটাল যাত্রা</h2>
+                <p class="cta-subtitle">সীমিত স্লট available, আজই যোগাযোগ করুন</p>
+                <div class="cta-actions">
+                    <a href="tel:+8801712345678" class="btn btn-primary btn-large">এখনই কল করুন</a>
+                    <a href="#contact" class="btn btn-secondary btn-large">ফ্রি কনসালটেশন বুক করুন</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section class="contact" id="contact">
+        <div class="container">
+            <div class="section-header">
+                <h2 class="section-title">যোগাযোগ করুন</h2>
+                <p class="section-subtitle">আপনার প্রোজেক্ট নিয়ে আলোচনা করতে আজই যোগাযোগ করুন</p>
+            </div>
+            
+            <div class="contact-content">
+                <div class="contact-info">
+                    <div class="contact-method">
+                        <h3 class="contact-method-title">ফোন করুন</h3>
+                        <a href="tel:+8801712345678" class="contact-detail">+৮৮০ ১৭১২-৩৪৫৬৭৮</a>
+                        <a href="tel:+8801812345678" class="contact-detail">+৮৮০ ১৮১২-৩৪৫৬৭৮</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3 class="contact-method-title">হোয়াটসঅ্যাপ</h3>
+                        <a href="https://wa.me/8801712345678" class="contact-detail">+৮৮০ ১৭১২-৩৪৫৬৭৮</a>
+                        <p class="contact-note">সকাল ৯টা থেকে রাত ১০টা পর্যন্ত</p>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3 class="contact-method-title">ইমেইল</h3>
+                        <a href="mailto:info@techsolutions.com" class="contact-detail">info@techsolutions.com</a>
+                    </div>
+                    
+                    <div class="contact-method">
+                        <h3 class="contact-method-title">অফিস ঠিকানা</h3>
+                        <p class="contact-detail">বাড়ি # ১২, রোড # ৮, ধানমন্ডি<br>ঢাকা - ১২০৯, বাংলাদেশ</p>
+                    </div>
+                    
+                    <div class="payment-methods">
+                        <h3 class="payment-title">পেমেন্ট মেথড</h3>
+                        <div class="payment-icons">
+                            <div class="payment-icon">bKash</div>
+                            <div class="payment-icon">Nagad</div>
+                            <div class="payment-icon">Rocket</div>
+                            <div class="payment-icon">Bank</div>
+                        </div>
+                    </div>
+                </div>
+                
+                <div class="contact-form-container">
+                    <form id="contactForm" class="contact-form">
+                        <div class="form-group">
+                            <input type="text" id="name" placeholder="আপনার নাম" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="tel" id="phone" placeholder="ফোন নম্বর" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <input type="email" id="email" placeholder="ইমেইল ঠিকানা" required>
+                        </div>
+                        
+                        <div class="form-group">
+                            <select id="service" required>
+                                <option value="" disabled selected>আপনার প্রয়োজনীয় সেবা</option>
+                                <option value="web-design">ওয়েব ডিজাইন</option>
+                                <option value="web-development">ওয়েব ডেভেলপমেন্ট</option>
+                                <option value="digital-marketing">ডিজিটাল মার্কেটিং</option>
+                                <option value="graphic-design">গ্রাফিক ডিজাইন</option>
+                                <option value="other">অন্যান্য</option>
+                            </select>
+                        </div>
+                        
+                        <div class="form-group">
+                            <textarea id="message" rows="4" placeholder="আপনার মেসেজ" required></textarea>
+                        </div>
+                        
+                        <button type="submit" class="btn btn-primary btn-full">মেসেজ পাঠান</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="footer">
+        <div class="container">
+            <div class="footer-content">
+                <div class="footer-logo">
+                    <a href="#" class="logo">
+                        <span class="logo-text">টেক</span>
+                        <span class="logo-highlight">সলিউশনস</span>
+                    </a>
+                    <p class="footer-description">বাংলাদেশের ব্যবসায়িকদের জন্য পূর্ণাঙ্গ আইটি ও ডিজিটাল মার্কেটিং সমাধান।</p>
+                </div>
+                
+                <div class="footer-links">
+                    <div class="footer-column">
+                        <h3 class="footer-title">দ্রুত লিংক</h3>
+                        <ul class="footer-list">
+                            <li><a href="#home">হোম</a></li>
+                            <li><a href="#services">সেবাসমূহ</a></li>
+                            <li><a href="#portfolio">পোর্টফোলিও</a></li>
+                            <li><a href="#process">প্রক্রিয়া</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">সেবাসমূহ</h3>
+                        <ul class="footer-list">
+                            <li><a href="#services">ওয়েব ডিজাইন</a></li>
+                            <li><a href="#services">ওয়েব ডেভেলপমেন্ট</a></li>
+                            <li><a href="#services">ডিজিটাল মার্কেটিং</a></li>
+                            <li><a href="#services">গ্রাফিক ডিজাইন</a></li>
+                        </ul>
+                    </div>
+                    
+                    <div class="footer-column">
+                        <h3 class="footer-title">লিগাল</h3>
+                        <ul class="footer-list">
+                            <li><a href="#">প্রাইভেসি পলিসি</a></li>
+                            <li><a href="#">টার্মস অ্যান্ড কন্ডিশন</a></li>
+                            <li><a href="#">রিফান্ড পলিসি</a></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="footer-bottom">
+                <div class="social-links">
+                    <a href="#" class="social-link" aria-label="ফেসবুক">ফেসবুক</a>
+                    <a href="#" class="social-link" aria-label="ইউটিউব">ইউটিউব</a>
+                    <a href="#" class="social-link" aria-label="লিংকডইন">লিংকডইন</a>
+                    <a href="#" class="social-link" aria-label="ইনস্টাগ্রাম">ইনস্টাগ্রাম</a>
+                </div>
+                
+                <p class="copyright">&copy; ২০২৩ টেক সলিউশনস। সর্বস্বত্ব সংরক্ষিত।</p>
+            </div>
+        </div>
+    </footer>
+
+    <!-- Back to Top Button -->
+    <button class="back-to-top" id="backToTop" aria-label="সর্বোচ্চে যান">
+        <svg viewBox="0 0 24 24" width="24" height="24">
+            <path fill="currentColor" d="M7.41 15.41L12 10.83l4.59 4.58L18 14l-6-6-6 6z"/>
+        </svg>
+    </button>
+
+    <script>
+        // Mobile Menu Toggle
+        const mobileMenuBtn = document.getElementById('mobileMenuBtn');
+        const mainNav = document.getElementById('mainNav');
+        
+        mobileMenuBtn.addEventListener('click', function() {
+            this.classList.toggle('active');
+            mainNav.classList.toggle('active');
+        });
+        
+        // Close mobile menu when clicking a link
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenuBtn.classList.remove('active');
+                mainNav.classList.remove('active');
+            });
+        });
+        
+        // FAQ Accordion
+        const faqQuestions = document.querySelectorAll('.faq-question');
+        
+        faqQuestions.forEach(question => {
+            question.addEventListener('click', () => {
+                const answer = question.nextElementSibling;
+                const isActive = question.classList.contains('active');
+                
+                // Close all other FAQ items
+                faqQuestions.forEach(q => {
+                    q.classList.remove('active');
+                    q.nextElementSibling.classList.remove('active');
+                });
+                
+                // Open clicked FAQ item if it was closed
+                if (!isActive) {
+                    question.classList.add('active');
+                    answer.classList.add('active');
+                }
+            });
+        });
+        
+        // Back to Top Button
+        const backToTopBtn = document.getElementById('backToTop');
+        
+        window.addEventListener('scroll', () => {
+            if (window.pageYOffset > 300) {
+                backToTopBtn.classList.add('visible');
+            } else {
+                backToTopBtn.classList.remove('visible');
+            }
+        });
+        
+        backToTopBtn.addEventListener('click', () => {
+            window.scrollTo({
+                top: 0,
+                behavior: 'smooth'
+            });
+        });
+        
+        // Form Submission
+        const contactForm = document.getElementById('contactForm');
+        
+        contactForm.addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Get form values
+            const name = document.getElementById('name').value;
+            const phone = document.getElementById('phone').value;
+            const email = document.getElementById('email').value;
+            const service = document.getElementById('service').value;
+            const message = document.getElementById('message').value;
+            
+            // In a real implementation, you would send this data to a server
+            // For this demo, we'll just show an alert
+            alert(`ধন্যবাদ ${name}! আপনার মেসেজটি আমরা পেয়েছি। আমরা শীঘ্রই আপনার সাথে যোগাযোগ করব।`);
+            
+            // Reset form
+            contactForm.reset();
+        });
+        
+        // Scroll Animation
+        const observerOptions = {
+            root: null,
+            rootMargin: '0px',
+            threshold: 0.1
+        };
+        
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+        
+        // Observe elements for scroll animation
+        document.querySelectorAll('.service-card, .reason-card, .portfolio-card, .process-step, .testimonial-card, .pricing-card').forEach(element => {
+            element.classList.add('fade-in');
+            observer.observe(element);
+        });
+        
+        // Smooth scrolling for anchor links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function(e) {
+                e.preventDefault();
+                
+                const targetId = this.getAttribute('href');
+                if (targetId === '#') return;
+                
+                const targetElement = document.querySelector(targetId);
+                if (targetElement) {
+                    const headerHeight = document.querySelector('.header').offsetHeight;
+                    const targetPosition = targetElement.offsetTop - headerHeight;
+                    
+                    window.scrollTo({
+                        top: targetPosition,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+    </script>
+</body>
+</html>
